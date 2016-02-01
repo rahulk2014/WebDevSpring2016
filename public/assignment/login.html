@@ -44,7 +44,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="./register.html">Register</a></li>
-                <li><a href="./login.html">Login</a></li>
+                <li><a href="#" class="disabledState">Login</a></li>
                 <li><a href="#">UserName</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -67,19 +67,26 @@
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Welcome !</h1>
-            <p id="content">
-            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-            and I will give you a complete account of the system, and expound the actual teachings of the great explorer
-            of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself,
-            because it is pleasure, but because those who do not know how to pursue pleasure rationally
-            encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or
-            desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which
-            toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes
-            laborious physical exercise, except to obtain some advantage from it?
-            But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences,
-            or one who avoids a pain that produces no resultant pleasure?"
-            </p>
+            <h1 class="page-header">Login</h1>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">Username :</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="username" placeholder="UserName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password :</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn form-control btn-color">Register</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -88,8 +95,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
