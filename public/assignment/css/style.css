@@ -2,6 +2,10 @@
     font-size : 30px;
 }
 
+.glyphicon-remove {
+    font-size : 30px;
+}
+
 #content {
     text-align: justify;
 }
