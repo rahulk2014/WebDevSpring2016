@@ -43,10 +43,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">UserName</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="#" class="disabledState">Register</a></li>
+                <li><a href="#" id="loginPage">Login</a></li>
+                <li><a href="#" id="userNamePage">UserName</a></li>
+                <li><a href="#" id="logOut">Logout</a></li>
             </ul>
             <!-- <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">Username :</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="username" placeholder="text">
+                        <input type="text" class="form-control" id="username" placeholder="UserName">
                     </div>
                 </div>
                 <div class="form-group">
@@ -91,6 +91,11 @@
                     <label for="email" class="col-sm-3 control-label">Email :</label>
                     <div class="col-sm-9">
                         <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn form-control btn-color">Register</button>
                     </div>
                 </div>
             </form>

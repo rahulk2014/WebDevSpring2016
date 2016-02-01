@@ -1,3 +1,12 @@
 #content {
     text-align: justify;
 }
+
+disabledPage {
+    pointer-events: none;
+}
+
+.btn-color {
+    color: #f5f5f5;
+    background-color: #888888;
+}
