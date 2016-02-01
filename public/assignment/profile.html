@@ -43,8 +43,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" class="disabledState">Register</a></li>
-                <li><a href="./login.html">Login</a></li>
                 <li><a href="#">UserName</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -59,16 +57,15 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <!--<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li> -->
-                <li><a href="./home.html">Home</a></li>
-                <li><a href="./profile.html">Profile</a></li>
+                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#">Profile <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Admin</a></li>
                 <li><a href="#">Forms</a></li>
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Register</h1>
+            <h1 class="page-header">Profile</h1>
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">Username :</label>
@@ -83,9 +80,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="verifyPassword" class="col-sm-3 control-label">Verify Password :</label>
+                    <label for="username" class="col-sm-3 control-label">First Name :</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="verifyPassword" placeholder="Password">
+                        <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">Last Name :</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -96,7 +99,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn form-control btn-color">Register</button>
+                        <button type="submit" class="btn form-control btn-color">Update</button>
                     </div>
                 </div>
             </form>
