@@ -1,9 +1,17 @@
 .glyphicon-plus {
-    font-size : 30px;
+    font-size : 20px;
 }
 
+.glyphicon-pencil {
+    font-size : 20px;
+}
+
+.form-spacing {
+    margin-top: 20px;
+    width:50%;
+}
 .glyphicon-remove {
-    font-size : 30px;
+    font-size : 20px;
 }
 
 #content {

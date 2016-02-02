@@ -58,50 +58,49 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="./home.html">Home</a></li>
-                <li class="active"><a href="#">Profile <span class="sr-only">(current)</span></a></li>
-                <li><a href="./admin.html">Admin</a></li>
-                <li><a href="./forms.html">Forms</a></li>
+                <li><a href="./profile.html">Profile</a></li>
+                <li><a href="#">Admin</a></li>
+                <li class="active"><a href="#">Forms<span class="sr-only">(current)</span></a></li>
             </ul>
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Profile</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">Username :</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="username" placeholder="UserName">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Password :</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">First Name :</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="firstname" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">Last Name :</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email :</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn form-control btn-color">Update</button>
-                    </div>
-                </div>
-            </form>
+            <h1 class="page-header">Forms</h1>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Forms</a></li>
+                <li><a href="./form-fields.html">Fields</a></li>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Form Name </th>
+                            <th> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Action </th>
+                        </tr>
+                        <tr>
+                            <th><input type="text" class="form-control" placeholder="name"></th>
+                            <th><span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> Registration Form </td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></td>
+
+                        </tr>
+                        <tr>
+                            <td> Contact List </td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></td>
+                        </tr>
+                        <tr>
+                            <td> To Do List </td>
+                            <td><span class="glyphicon glyphicon-remove" aria-hidden="true">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ul>
         </div>
     </div>
 </div>
@@ -115,4 +114,3 @@
 <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
-
