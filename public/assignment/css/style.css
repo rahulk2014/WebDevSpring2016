@@ -3,6 +3,22 @@
     font-size : 20px;
 }
 
+.glyphicon-plus {
+    color : green;
+}
+
+.glyphicon-remove {
+    color: red;
+}
+
+.glyphicon-pencil {
+    color: brown;
+}
+
+.glyphicon-list-alt {
+    color : deepskyblue;
+}
+
 .form-spacing {
     margin-top: 20px;
     width:50%;
@@ -19,6 +35,6 @@
 }
 
 .btn-color {
-    color: #f5f5f5;
-    background-color: #888888;
+    color: white;
+    background-color: black;
 }

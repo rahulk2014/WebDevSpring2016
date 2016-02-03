@@ -18,7 +18,7 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="./css/dashboard.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -134,11 +134,11 @@
                 <label>Roles</label>
                 <div class="row">
                     <div class="form-group col-xs-6">
-                        <input type="checkbox" id="admin-form-fields" placeholder="Date of Birth" checked>
+                        <input type="checkbox" id="admin-checkbox-form-fields" placeholder="Date of Birth" checked>
                         Admin<br/>
-                        <input type="checkbox" id="admin-form-fields" placeholder="Date of Birth">
+                        <input type="checkbox" id="student-checkbox-form-fields" placeholder="Date of Birth">
                         Student<br/>
-                        <input type="checkbox" id="admin-form-fields" placeholder="Date of Birth" checked>
+                        <input type="checkbox" id="user-checkbox-form-fields" placeholder="Date of Birth" checked>
                         User<br/>
                     </div>
                     <div class="col-xs-6">
@@ -167,6 +167,28 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <hr>
+                <label>Add New Field:</label>
+                <div class="row">
+                    <div class="form-group col-xs-6 ">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle form-control" type="button" id="gender-form-fields" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Single Line Text
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Date</a></li>
+                                <li><a href="#">Dropdown</a></li>
+                                <li><a href="#">Checkboxes</a></li>
+                                <li><a href="#">Radio buttons</a></li>
+                                <li><a href="#">Paragraph Text Field</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="glyphicon glyphicon-plus col-md-offset-1" aria-hidden="true"></span>
                     </div>
                 </div>
             </form>
