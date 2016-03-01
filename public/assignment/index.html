@@ -15,11 +15,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="app.js"></script>
-    <!--<script src="config.js"></script>-->
+    <<script src="config.js"></script>
+
+    <script src="./views/main/main.controller.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/dashboard.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,7 +30,13 @@
 
 <!-- Include the Header and the SideBar-->
 <div ng-include ="'./views/header/header.view.html'"></div>
-<div ng-include ="'./views/sidebar/sidebar.view.html'"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        <div ng-view></div>
+    </div>
+</div>
 
 <!-- Dynamically Load different views -->
 <div ng-view="">
