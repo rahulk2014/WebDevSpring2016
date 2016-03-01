@@ -32,4 +32,41 @@
         callback(null);
     }
 
+    function findAllUsers(callback) {
+        callback(users);
+    }
+
+    function createUser(user, callback) {
+        var newUser = {
+            username : user.username;
+            password : user.password;
+
+        }
+
+        users.push(newUser);
+        callback(newUser);
+    }
+
+    function deleteUserById(userId, callback) {
+        var user_found = findUserById(userId);
+
+        if(null != user_found)
+            users.splice(users.indexOf(user), 1);
+        callback(users);
+    }
+
+    function updateUser(userId, user, callback) {
+        var user_found = findUserById(userId);
+        if( userId != null) {
+            user_found.username = user.username;
+            user_found.firstName = user.firstName;
+            user_found.lastName = user.lastName;
+            user_found.password = user.password;
+            user_found.email = user.email;
+            callback(found_user);
+        } else {
+            callback(null);
+        }
+    }
+
 })();
