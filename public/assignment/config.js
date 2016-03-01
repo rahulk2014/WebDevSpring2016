@@ -20,6 +20,10 @@
                     templateUrl: "admin/admin.view.html",
                     controller: "AdminController"
                 })
+                .when("/register", {
+                    templateUrl: "views/users/register.view.html",
+                    controller: "RegisterController"
+                })
                 .otherwise({
                     redirectTo: "/"
                 });

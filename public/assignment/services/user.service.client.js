@@ -5,8 +5,9 @@
 
 (function() {
 
-    angular.module("FormBuilderApp");
-           .factory("UserService", UserServiceFunction);
+    angular
+        .module("FormBuilderApp")
+        .factory("UserService", UserServiceFunction);
 
     function UserServiceFunction($rootScope) {
 
@@ -67,6 +68,14 @@
         } else {
             callback(null);
         }
+    }
+
+    function setCurrentUser (user) {
+        $rootScope.currentUser = user;
+    }
+
+    function getCurrentUser () {
+        return $rootScope.currentUser;
     }
 
 })();
