@@ -7,7 +7,6 @@
         .module("FormBuilderApp")
         .controller("HeaderController", headerController);
 
-    console.log("In Header Controller");
     function headerController($scope, $location) {
         console.log("In Header Controller");
         $scope.$location = $location;
