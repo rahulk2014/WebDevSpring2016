@@ -12,6 +12,5 @@
     function MainController($scope, $location) {
         console.log("In main Controller");
         $scope.$location = $location;
-
     }
 })();
