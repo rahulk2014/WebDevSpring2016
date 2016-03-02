@@ -7,7 +7,7 @@
 (function() {
 
     angular
-        .module("FormBuilderApp");
+        .module("FormBuilderApp")
         .factory("FormService", FormServiceFunction);
 
     function FormServiceFunction($rootScope) {
