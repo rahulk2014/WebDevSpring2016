@@ -8,8 +8,8 @@
 
             $routeProvider.
                 when("/",{
-                    templateUrl:"views/home/home.view.html",
-                    controller: "HomeController"
+                    templateUrl : "views/home/home.view.html",
+                    controller : "HomeController"
                 })
             //    .when("/admin",{
             //        templateUrl:"views/admin/admin.view.html",

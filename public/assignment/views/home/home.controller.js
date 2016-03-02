@@ -4,10 +4,12 @@
 "use strict";
 
 (function(){
+    console.log("Inside home controller");
     angular
         .module("FormBuilderApp")
         .controller("HomeController", HomeControllerFunction);
 
+    console.log("Before");
         function HomeControllerFunction($scope, $location) {
             console.log("In Home controller");
             $scope.$location = $location;
