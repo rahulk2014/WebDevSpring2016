@@ -7,9 +7,9 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", registerControllerFunction);
+        .controller("RegisterController", registerController);
 
-    function registerControllerFunction($location, $scope, UserService) {
+    function registerController($location, $scope, UserService) {
 
         $scope.error = null;
         if (null == user) {
