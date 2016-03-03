@@ -7,8 +7,9 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("SideBarController", sidebarController);
-    function sidebarController($scope, $location) {
+        .controller("SidebarController", SidebarController);
+
+    function SidebarController($scope, $location) {
         console.log("In SideBar Controller");
         $scope.$location = $location;
     }

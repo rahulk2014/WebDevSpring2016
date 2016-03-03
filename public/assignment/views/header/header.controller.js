@@ -5,9 +5,9 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("HeaderController", headerController);
+        .controller("HeaderController", HeaderController);
 
-    function headerController($scope, $location) {
+    function HeaderController($scope, $location) {
         console.log("In Header Controller");
         $scope.$location = $location;
     }
