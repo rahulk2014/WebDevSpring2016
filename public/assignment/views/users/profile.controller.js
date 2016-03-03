@@ -13,6 +13,7 @@
         $scope.update = update;
 
         function update() {
+            console.log("In update");
             UserService.setCurrentUser($scope.profile);
         }
     }

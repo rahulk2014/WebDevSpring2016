@@ -7,9 +7,9 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("LoginController", LoginControllerFunction);
+        .controller("LoginController", loginController);
 
-    function LoginControllerFunction($scope, $location, UserService) {
+    function loginController($scope, $location, UserService) {
 
         $scope.login = login;
         $scope.$location = $location;
@@ -21,6 +21,9 @@
                                 console.log(user_found);
                                 UserService.setCurrentUser(user_found);
                                 $location.url("/profile");
+                            }
+                            else{
+                                console.log("User not found");
                             }
                         });
         }
