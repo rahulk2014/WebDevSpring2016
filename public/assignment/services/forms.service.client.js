@@ -34,7 +34,7 @@
 
             model.forms.push(newForm);
             callback(newForm);
-            return;
+            //return;
         }
 
         return model;
@@ -49,7 +49,7 @@
                 }
             }
             callback(userForms);
-            return;
+            //return;
         }
 
         function deleteFormById(formId, callback) {
@@ -59,35 +59,7 @@
             }
 
             callback(model.forms);
-            return;
-        }
-
-        function createFormForUser(userId,form,callback){
-            var newForm = {
-                _id: (new Date).getTime(),
-                title: form.title,
-                userId:userId
-            };
-            model.forms.push(newForm);
-            callback(newForm);
-            return;
-
-        }
-
-        function updateFormById(formId,newForm,callback) {
-
-            for(var f in model.forms){
-                if (model.forms[f]._id == formId){
-                    var updatedForm = {
-                        _id:newForm._id,
-                        title:newForm.title,
-                        userId:newForm.userId
-                    };
-                    model.forms[f] = updatedForm;
-                    callback(updatedForm);
-                    return;
-                }
-            }
+            //return;
         }
 
         function findFormById(formId) {
@@ -100,6 +72,31 @@
             }
             return null;
         }
-    }
 
+        function createFormForUser(userId,form,callback){
+            var newForm = {
+                _id: (new Date).getTime(),
+                title: form.title,
+                userId:userId
+            };
+            model.forms.push(newForm);
+            callback(newForm);
+            //return;
+        }
+
+        function updateFormById(formId,newForm,callback) {
+            for(var form in model.forms) {
+                if (model.forms[form]._id == formId){
+                    var updatedForm = {
+                        _id:newForm._id,
+                        title:newForm.title,
+                        userId:newForm.userId
+                    };
+                    model.forms[form] = updatedForm;
+                    callback(updatedForm);
+                    //return;
+                }
+            }
+        }
+    }
 })();
