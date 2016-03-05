@@ -1,3 +1,23 @@
 /**
  * Created by rahul on 2/23/16.
  */
+
+"use strict";
+(function(){
+    angular
+        .module("FormBuilderApp")
+        .controller("AdminController", adminController);
+
+    function adminController($scope, $location, $routeParams,$rootScope, FormService){
+        $scope.admin = admin;
+
+        if(typeof $rootScope.currentUser === 'undefined'){
+
+            $location.url("/home");
+        }
+
+        function admin(){
+            console.log("In admin");
+        }
+    }
+})();

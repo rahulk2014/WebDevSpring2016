@@ -21,3 +21,8 @@
         </div>
     </div>
 </nav>
+
+
+
+
+<li ng-class="{'active': $location.path() == '/profile'}" ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
