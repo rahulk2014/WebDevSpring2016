@@ -30,7 +30,6 @@ module.exports = function(app, usermodel) {
             res.json(result);
             return;
         }
-
         res.json({message : "User Not Found"});
     }
 
@@ -40,7 +39,6 @@ module.exports = function(app, usermodel) {
             res.json(result);
             return;
         }
-
         res.json({message : "User not found "});
     }
 
@@ -58,7 +56,6 @@ module.exports = function(app, usermodel) {
             res.json(result);
             return;
         }
-
         res.json({message : "User not found with the given username and password"});
     }
 
@@ -68,7 +65,6 @@ module.exports = function(app, usermodel) {
             res.json(result);
             return;
         }
-
         res.json({message : "User not found with the given credentials"});
     }
 

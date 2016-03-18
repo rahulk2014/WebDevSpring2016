@@ -12,7 +12,6 @@
         $scope.admin = admin;
 
         if(typeof $rootScope.currentUser === 'undefined'){
-
             $location.url("/home");
         }
 
