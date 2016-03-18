@@ -7,3 +7,6 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 	res.send('hello world');
 });*/
 app.listen(port, ipaddress);
+
+require("./public/assignment/server/app.js")(app);
+
