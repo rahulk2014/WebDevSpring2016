@@ -9,7 +9,9 @@
         .module("FormBuilderApp")
         .factory("UserService", UserServiceFunction);
 
-    function UserServiceFunction($rootScope) {
+    function UserServiceFunction($rootScope, $http) {
+
+
 
         var model = {
                 users : [
@@ -65,7 +67,9 @@
         }
 
         function findAllUsers(callback) {
-            callback(model.users);
+            console.log("Inside Client User Service");
+            return $http.get("/api/assignment/user");
+            //callback(model.users);
         }
 
         function createUser(user, callback) {
