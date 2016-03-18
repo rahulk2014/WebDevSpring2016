@@ -5,13 +5,26 @@ module.exports = function(app, formModel) {
     app.get("/api/assignment/user/:userId/form", getFormsByUserIdService);
     app.get("/api/assignment/form/:formId", getFormByFormIdService);
     app.delete("/api/assignment/form/:formId", deleteFormByFormIdService);
+    app.post("/api/assignment/user/:userId/form", createFormService);
+    app.put("/api/assignment/form/:formId", updateFormByFormIdService);
 
+    function updateFormByFormIdService(req, res) {
+        var formId = req.params.formId;
+        var form = req.body;
+        var result = formModel.updateFormByFormIdModel(formId, form);
+        if(result) {
+            res.json(result);
+            return;
+        }
+        return null;
+    }
 
-    app.get("/api/assignment/user?username=username", getUserByUserNameService);
-    app.get("/api/assignment/user?{username=alice&password=wonderland}", getUserByUserNameAndPasswordService);
-    app.post("/api/assignment/user", createUserService);
-    app.put("/api/assignment/user/:id", updateUserIdByIdService);
-
+    function createFormService(req, res) {
+        var userId = req.params.userId;
+        var newForm = req.body;
+        var result = formModel.createFormModel(userId, newForm);
+        res.json(result);
+    }
 
     function deleteFormByFormIdService(req, res) {
         var result = formModel.deleteFormByFormIdModel(req.params.formId);

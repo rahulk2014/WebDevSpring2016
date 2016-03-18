@@ -4,6 +4,29 @@
 module.exports = function(app) {
 
     var formData = require("./form.mock.json");
+    var newFormId = require("node-uuid");
+
+    function createFormModel(userId, form) {
+        var newForm = {
+            "_id" : newFormId.v1(),
+            "title" : form.title,
+            "userId" : userId,
+            "fields" : form.fields;
+        }
+        formData.push(newForm);
+        return formData;
+    }
+
+    function updateFormByFormIdModel(formId, form) {
+        var formFound = getFormByFormIdModel(formId);
+        if(formFound) {
+            formFound.title = form.title;
+            formFound.userId = form.userId;
+            formFound.fields = form.fields;
+            return formData;
+        }
+        return null;
+    }
 
     function getFormsByUserIdModel(userId) {
         var formList = [];
