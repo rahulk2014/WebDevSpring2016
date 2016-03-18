@@ -5,8 +5,20 @@ module.exports = function(app) {
 
     var userData = require("./user.mock.json");
 
-    function getAllUsersModel() {
-        console.log("In getAllUsersModel()");
+    var api = {
+        findAll : findAll,
+        findUserByCredentials : findUserByCredentials,
+        findUserByUserName : findUserByUserName,
+        findUserById : findUserById,
+        createUserModel: createUserModel,
+        deleteUserByIdModel: deleteUserByIdModel,
+        updateUserIdByIdModel: updateUserIdByIdModel,
+    };
+
+    return api;
+
+    function findAll() {
+        console.log("In findAll()");
         return userData;
     }
 
@@ -21,8 +33,8 @@ module.exports = function(app) {
         return userData;
     }
 
-    function getUserByUserNameAndPasswordModel(credentials) {
-        console.log("In getUserByUserNameAndPasswordModel()");
+    function findUserByCredentials(credentials) {
+        console.log("In findUserByCredentials()");
 
         for(i in userData) {
             if(userData[i].username == credentials.username && userData[i].password == credentials.password) {
@@ -57,7 +69,7 @@ module.exports = function(app) {
         return null;
     }
 
-    function getUserByUserNameModel(username) {
+    function findUserByUserName(username) {
 
         for(i in userData) {
             if(userData[i].username === username) {
@@ -68,7 +80,7 @@ module.exports = function(app) {
         return null;
     }
 
-    function getUserByIdModel(id) {
+    function findUserById(id) {
 
         for(user in userData) {
             if(userData[user]._id == id) {

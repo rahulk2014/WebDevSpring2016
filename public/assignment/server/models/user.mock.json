@@ -3,7 +3,7 @@
   {"_id": 234, "firstName": "Bob",	"lastName": "Hope", 		"username": "bob", 	"password": "bob"},
   {"_id": 345, "firstName": "Charlie","lastName": "Brown", 		"username": "charlie", "password": "charlie"},
   {"_id": 456, "firstName": "Dan",	"lastName": "Craig", 		"username": "dan", 	"password": "dan"},
-  {"_id": 567, "firstName": "Edward","lastName": "Norton",		"username": "ed",	"password": "ed"}
+  {"_id": 567, "firstName": "Edward","lastName": "Norton",		"username": "ed",	"password": "ed"},
   {"_id": 987, "firstName": "Daniel",	"lastName": "Damsel", 		"username": "daniel", 	"password": "daniel"},
   {"_id": 986, "firstName": "Rahul","lastName": "Kulkarni",		"username": "raul",	"password": "raul"}
 

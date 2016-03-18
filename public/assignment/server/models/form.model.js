@@ -11,7 +11,7 @@ module.exports = function(app) {
             "_id" : newFormId.v1(),
             "title" : form.title,
             "userId" : userId,
-            "fields" : form.fields;
+            "fields" : form.fields
         }
         formData.push(newForm);
         return formData;

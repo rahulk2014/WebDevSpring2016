@@ -3,9 +3,11 @@
  */
 
 module.exports = function(app) {
-    var userModel = require("./models/user.model.js", app);
-    var formModel = require("./models/form.model.js", app);
+    console.log("In Server app.js");
+    var userModel = require("./models/user.model.js")();
+    require("./services/user.service.server.js")( app, userModel);
 
-    var userService = require("./services/user.service.server.js", app, userModel);
-    var formService = require("./services/forms.service.server.js", app, formModel);
+    var formModel = require("./models/form.model.js")();
+    require("./services/forms.service.server.js")( app, formModel);
+    console.log("At the end of app.js");
 };
