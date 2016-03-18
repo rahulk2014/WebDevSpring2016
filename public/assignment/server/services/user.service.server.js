@@ -50,7 +50,10 @@ module.exports = function(app, usermodel) {
     }
 
     function getUserByUserNameAndPasswordService(req, res) {
-        var result = usermodel.getUserByUserNameAndPasswordModel(req.params.credentials);
+        var uname = req.query.username;
+        var pwd = req.query.password;
+        var credentials = {username : uname, password : pws };
+        var result = usermodel.getUserByUserNameAndPasswordModel(credentials);
         if(result) {
             res.json(result);
             return;
