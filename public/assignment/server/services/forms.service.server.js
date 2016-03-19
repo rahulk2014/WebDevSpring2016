@@ -29,6 +29,7 @@ module.exports = function(app, formModel) {
 
     function getFormsByUserIdService(req, res) {
         var result = formModel.getFormsByUserIdModel(req.params.userId);
+        console.log("HI : " + result.length);
         res.json(result);
     }
 

@@ -6,6 +6,22 @@ module.exports = function(app) {
     var formData = require("./form.mock.json");
     var newFormId = require("node-uuid");
 
+
+    var model = {
+        createFormModel :createFormModel,
+        updateFormByFormIdModel : updateFormByFormIdModel,
+        getFormsByUserIdModel : getFormsByUserIdModel,
+        getFormByFormIdModel : getFormByFormIdModel,
+        deleteFormByFormIdModel : deleteFormByFormIdModel,
+        getFieldsForForm : getFieldsForForm,
+        getFieldIdForForm : getFieldIdForForm,
+        deleteFieldFromForm : deleteFieldFromForm,
+        createFieldForForm : createFieldForForm,
+        updateField : updateField
+    }
+
+    return model;
+
     function createFormModel(userId, form) {
         var newForm = {
             "_id" : newFormId.v1(),

@@ -32,7 +32,7 @@
                     controller: "ProfileController"
                 })
                 .when("/field", {
-                    templateURL : "views/forms/field.view.html",
+                    templateUrl : "views/forms/field.view.html",
                     controller : "FieldController"
                 })
                 .otherwise({

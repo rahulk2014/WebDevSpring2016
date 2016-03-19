@@ -8,17 +8,17 @@
         .module("FormBuilderApp")
         .controller("FormController", formController);
 
-    function formController($scope,$rootScope , $location, UserService, FormService) {
+    function formController($scope, $rootScope , $location, UserService, FormService) {
 
         var currentUser = UserService.getCurrentUser();
         if('undefined' === typeof currentUser) {
             $location.url("/home");
-        }
-        else{
-            FormService.findAllFormsForUser(
-                currentUser._id,
-                function(forms){
-                    $scope.forms =forms;
+        } else {
+            FormService.findAllFormsForUser(currentUser._id)
+                .then(function(forms){
+                    $scope.forms = forms.data;
+                }, function(error){
+                    console.log("Unable to get forms for UserId");
                 });
         }
         $scope.$location = $location;
@@ -82,7 +82,6 @@
                 userId: $scope.forms[index].userId
             };
             $scope.form = selectedForm;
-
         }
     }
 })();

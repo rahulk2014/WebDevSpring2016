@@ -10,7 +10,7 @@
         .module("FormBuilderApp")
         .factory("FormService", FormServiceFunction);
 
-    function FormServiceFunction($rootScope) {
+    function FormServiceFunction($rootScope, $http) {
 
         var model = {
             createFormForUser : createFormForUser,
@@ -34,7 +34,6 @@
         function deleteFormById(formId) {
             return $http.delete("/api/assignment/form/"+formId);
         }
-
 
         function updateFormById(formId,newForm) {
             return $http.put("/api/assignment/form/"+formId, newForm);
