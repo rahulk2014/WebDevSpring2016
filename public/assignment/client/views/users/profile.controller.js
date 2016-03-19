@@ -29,6 +29,7 @@
             UserService.updateUser($scope.profile._id, profile)
                 .then(function(response){
                     if(response.data) {
+                        $scope.message = "Successfully Updated";
                         UserService.setCurrentUser(response.data);
                     }
                     else {

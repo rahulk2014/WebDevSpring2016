@@ -19,11 +19,11 @@
                                     function(user){
                                         if(user.data != null) {
                                             $rootScope.currentUser = user.data;
-
+                                            $location.url('/profile');
                                         } else {
                                             $scope.message = "User Not Found"
                                         }
-                                        $location.url('/profile');
+
                                     },
                                     function(error) {
                                         console.log("Error Function");

@@ -12,11 +12,7 @@ module.exports = function(app, formModel) {
         var formId = req.params.formId;
         var form = req.body;
         var result = formModel.updateFormByFormIdModel(formId, form);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        return null;
+        res.json(result);
     }
 
     function createFormService(req, res) {
@@ -28,29 +24,17 @@ module.exports = function(app, formModel) {
 
     function deleteFormByFormIdService(req, res) {
         var result = formModel.deleteFormByFormIdModel(req.params.formId);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "Form Not Found"});
+        res.json(result);
     }
 
     function getFormsByUserIdService(req, res) {
         var result = formModel.getFormsByUserIdModel(req.params.userId);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "User Not Found"});
+        res.json(result);
     }
 
     function getFormByFormIdService(req, res) {
         var result = formModel.getFormByFormIdModel(req.params.formId);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "Form not found based on Form Id"});
+        res.json(result);
     }
 
 
