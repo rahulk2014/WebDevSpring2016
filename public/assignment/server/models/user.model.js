@@ -11,8 +11,8 @@ module.exports = function(app) {
         findUserByUserName : findUserByUserName,
         findUserById : findUserById,
         createUserModel: createUserModel,
-        deleteUserByIdModel: deleteUserByIdModel,
-        updateUserIdByIdModel: updateUserIdByIdModel,
+        deleteUser: deleteUser,
+        updateUser: updateUser,
     };
 
     return api;
@@ -38,13 +38,14 @@ module.exports = function(app) {
 
         for(i in userData) {
             if(userData[i].username == credentials.username && userData[i].password == credentials.password) {
+                console.log(userData[i]);
                 return userData[i];
             }
         }
         return null;
     }
 
-    function deleteUserByIdModel(id) {
+    function deleteUser(id) {
         var user = getUserByIdModel(id);
         if(user) {
             userData.splice(user, 1);
@@ -53,7 +54,8 @@ module.exports = function(app) {
         return null;
     }
 
-    function updateUserIdByIdModel(userId, user) {
+    function updateUser(userId, user) {
+        console.log("In User Model updateUser");
         for(i in userData) {
             if(userData[i]._id == userId) {
                 userData[i].username = user.username;
@@ -62,7 +64,7 @@ module.exports = function(app) {
                 userData[i].lastName = user.lastName;
                 userData[i].email = user.email;
 
-                return userData;
+                return userData[i];
             }
         }
 

@@ -9,29 +9,23 @@
         .module("FormBuilderApp")
         .controller("LoginController", loginController);
 
-    function loginController($scope, $location, UserService) {
+    function loginController($scope, $rootScope, $location, UserService) {
 
-        $scope.login = login;
-        $scope.$location = $location;
+        $scope.error = null;
 
-        function login(user) {
-            UserService.findUserByCredentials(user.username, user.password)
-                       .then(function(response){
-                           console.log("In Then of Userservice findUserByCredentials");
-                           UserService.setCurrentUser(response.data);
-                           $location.url("/profile");
-                       });
-                        //function(user_found) {
-                        //    if(user_found) {
-                        //        console.log(user_found);
-                        //        UserService.setCurrentUser(user_found);
-                        //        $location.url("/profile");
-                        //    }
-                        //    else{
-                        //        console.log("User not found");
-                        //    }
-                        //});
-        }
+        $scope.login = function login(user) {
+                            UserService.findUserByCredentials(user.username, user.password)
+                                .then(function(response){
+                                   var result = response.data;
+                                   if(result != null) {
+                                       $rootScope.currentUser = result;
+                                       //UserService.setCurrentUser(result);
+                                       $location.url("/profile");
+                                   } else {
+                                       $scope.error = "User not present";
+                                   }
+                           });
+        };
     }
 
 })();

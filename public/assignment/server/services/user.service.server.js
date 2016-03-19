@@ -7,38 +7,29 @@ module.exports = function(app, usermodel) {
     app.get("/api/assignment/user", findUser);
     app.get("/api/assignment/user/:id", findUserById);
     app.post("/api/assignment/user", createUserService);
-    app.put("/api/assignment/user/:id", updateUserIdByIdService);
-    app.delete("/api/assignment/user/:id", deleteUserByIdService);
+    app.put("/api/assignment/user/:id", updateUser);
+    app.delete("/api/assignment/user/:id", deleteUser);
 
 
-    function deleteUserByIdService(req, res) {
-        var result = deleteUserByIdModel(req.params.id);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "User Not Found"});
+    function deleteUser(req, res) {
+        res.json(usermodel.deleteUserByIdModel(req.params.id));
     }
 
-    function updateUserIdByIdService(req, res) {
-        var result = updateUserIdByIdModel(req.params.id, req.body);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "User not found "});
+    function updateUser(req, res) {
+        console.log("In updateUser in Server User Service");
+        console.log(req.body);
+        res.json(usermodel.updateUser(req.params.id, req.body));
     }
 
     function createUserService(req, res) {
-        var result = createUserModel(req.body);
-        res.json(result);
+        res.json(createUserModel(req.body));
     }
 
     function findUser(req, res) {
-        console.log("Server getAllUsersService()");
+        console.log("Server getAllUsersService()" );
         var uname = req.query.username;
         var pwd = req.query.password;
-
+        console.log("Uname : "+uname + " Pwd : "+pwd);
         if(!uname && !pwd) {
             var result = usermodel.findAll();   //model function
             res.json(result);
@@ -53,10 +44,6 @@ module.exports = function(app, usermodel) {
     function findUserById(req, res) {
         var id = req.params.id;
         var result = usermodel.findUserById(id);
-        if(result) {
-            res.json(result);
-            return;
-        }
-        res.json({message : "User Not Found"});
+        res.json(result);
     }
 };

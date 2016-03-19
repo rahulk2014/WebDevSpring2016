@@ -30,6 +30,7 @@
 
         function findUserByCredentials(username, password) {
             console.log("In findUserByCredentials in Client User Service");
+            console.log("Username = " + username + " Password = " + password);
            // return $http.get("/api/assignment/user");
             return $http.get("/api/assignment/user?username="+username+"&password="+password);
         }
@@ -49,11 +50,12 @@
         }
 
         function deleteUserById(userId) {
-            return $http.delete("/api/assignment/user/:"+userId);
+            return $http.delete("/api/assignment/user/"+userId);
         }
 
         function updateUser(userId, user) {
-            return $http.put("/api/assignment/"+user+"/:"+userId);
+            console.log(user);
+            return $http.put("/api/assignment/user/"+userId, user);
         }
 
         function setCurrentUser(user) {

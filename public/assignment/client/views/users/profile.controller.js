@@ -8,13 +8,34 @@
         .module("FormBuilderApp")
         .controller("ProfileController", profileControllerFunction);
 
-    function profileControllerFunction($scope, UserService) {
+    function profileControllerFunction($scope, $location, UserService) {
         $scope.profile = UserService.getCurrentUser();
-        $scope.update = update;
+        //console.log($scope.profile.username);
+        $scope.error = null;
 
-        function update() {
+        $scope.update = function update(profile) {
             console.log("In update");
-            UserService.setCurrentUser($scope.profile);
-        }
+            if(!profile.username || profile.username == null){
+                $scope.error = "Please enter username";
+                return;
+            }
+            if(!profile.firstName || profile.firstName == null){
+                $scope.error = "Please enter firstName";
+                return;
+            }
+            if(!profile.lastName || profile.lastName == null){
+                $scope.error = "Please enter lastName";
+                return;
+            }
+            UserService.updateUser($scope.profile._id, profile)
+                .then(function(response){
+                    console.log(response.data);
+                    if(response.data)
+                        UserService.setCurrentUser(response.data);
+                    else {
+                        $scope.error = "Unable to update";
+                    }
+                });
+        };
     }
 })();

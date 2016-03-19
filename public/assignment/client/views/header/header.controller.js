@@ -11,8 +11,9 @@
         console.log("In Header Controller");
         $scope.$location = $location;
         $scope.logout = function(){
+            $location.url("/");
             UserService.setCurrentUser(null);
-            $location.url("#/home");
+
         }
     }
 })();
