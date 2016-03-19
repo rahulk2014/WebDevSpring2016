@@ -25,18 +25,14 @@
         return model;
 
         function findUserByUsername (username) {
-            return $http.get("/api/assignment/user",{params : {username : username}});
+            return $http.get("/api/assignment/user?username="+username);
         }
 
         function findUserByCredentials(username, password) {
-            console.log("In findUserByCredentials in Client User Service");
-            console.log("Username = " + username + " Password = " + password);
-           // return $http.get("/api/assignment/user");
             return $http.get("/api/assignment/user?username="+username+"&password="+password);
         }
 
         function findAllUsers() {
-            console.log("Inside Client User Service");
             return $http.get("/api/assignment/user");
         }
 
@@ -46,7 +42,7 @@
                 password : user.password,
                 email : user.email
              };
-            return $http.post("api/assignment/"+newUser);
+            return $http.post("/api/assignment/user/",newUser);
         }
 
         function deleteUserById(userId) {

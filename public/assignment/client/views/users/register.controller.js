@@ -11,10 +11,9 @@
 
     function registerController($location, $scope, UserService) {
 
-        $scope.error = null;
         $scope.register = function(user) {
 
-            if (null == user) {
+            if (user == null) {
                 $scope.error = "Please fill in the required fields";
                 return;
             }
@@ -30,21 +29,27 @@
                 $scope.error = "Passwords must match";
                 return;
             }
-            var user = UserService.findUserByUsername(user.username);
-            if (user != null) {
-                $scope.error = "User already exists";
-                return;
-            }
-            UserService.createUser($scope.user)
-                .then(function(response){
-
+            UserService.findUserByUsername(user.username)
+                .then(function(userFound){
+                    if(userFound.data == null) {
+                        UserService.createUser(user)
+                            .then(function(users){
+                                UserService.findUserByUsername(user.username)
+                                    .then(function(userFoundAgain){
+                                        UserService.setCurrentUser(userFoundAgain.data);
+                                        $location.url('/profile');
+                                    }, function(error){
+                                        $scope.error = "Unable to find existing user name";
+                                    })
+                            }, function(error) {
+                                $scope.error = "Unable to create a new user";
+                            });
+                    } else {
+                        $scope.error = "User already exists";
+                    }
+                }, function(error) {
+                    console.log("Unable to fetch username");
                 });
-            //    , function (newUser) {
-            //    UserService.setCurrentUser(newUser);
-            //});
-
-            //Navigate to the profile page
-            $location.url("/profile");
 
         }
     }

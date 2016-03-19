@@ -6,7 +6,7 @@ module.exports = function(app, usermodel) {
 
     app.get("/api/assignment/user", findUser);
     app.get("/api/assignment/user/:id", findUserById);
-    app.post("/api/assignment/user", createUserService);
+    app.post("/api/assignment/user", createUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
 
@@ -21,15 +21,14 @@ module.exports = function(app, usermodel) {
         res.json(usermodel.updateUser(req.params.id, req.body));
     }
 
-    function createUserService(req, res) {
-        res.json(createUserModel(req.body));
+    function createUser(req, res) {
+        res.json(usermodel.createUser(req.body));
     }
 
     function findUser(req, res) {
-        console.log("Server getAllUsersService()" );
         var uname = req.query.username;
         var pwd = req.query.password;
-        console.log("Uname : "+uname + " Pwd : "+pwd);
+
         if(!uname && !pwd) {
             var result = usermodel.findAll();   //model function
             res.json(result);

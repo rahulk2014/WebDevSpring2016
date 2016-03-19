@@ -11,7 +11,7 @@
 
     function loginController($scope, $rootScope, $location, UserService) {
 
-        //$scope.error = null;
+        $scope.message = null;
         //var user = $scope.user;
         $scope.login = function (user) {
                             UserService.findUserByCredentials(user.username, user.password)
@@ -21,7 +21,7 @@
                                             $rootScope.currentUser = user.data;
 
                                         } else {
-                                            //$scope.error = "User not present";
+                                            $scope.message = "User Not Found"
                                         }
                                         $location.url('/profile');
                                     },

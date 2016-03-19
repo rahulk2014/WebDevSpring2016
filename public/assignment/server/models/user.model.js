@@ -10,7 +10,7 @@ module.exports = function(app) {
         findUserByCredentials : findUserByCredentials,
         findUserByUserName : findUserByUserName,
         findUserById : findUserById,
-        createUserModel: createUserModel,
+        createUser: createUser,
         deleteUser: deleteUser,
         updateUser: updateUser,
     };
@@ -22,7 +22,7 @@ module.exports = function(app) {
         return userData;
     }
 
-    function createUserModel(user) {
+    function createUser(user) {
         var newUser = {
             "_id" : new Date().getTime(),
             "username" : user.username,
@@ -78,7 +78,6 @@ module.exports = function(app) {
                 return userData[i];
             }
         }
-
         return null;
     }
 
