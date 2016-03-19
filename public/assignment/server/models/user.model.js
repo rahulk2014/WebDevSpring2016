@@ -38,7 +38,7 @@ module.exports = function(app) {
 
         for(i in userData) {
             if(userData[i].username == credentials.username && userData[i].password == credentials.password) {
-                console.log(userData[i]);
+                console.log("User Found = " + userData[i].username);
                 return userData[i];
             }
         }

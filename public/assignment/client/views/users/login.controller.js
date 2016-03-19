@@ -11,21 +11,24 @@
 
     function loginController($scope, $rootScope, $location, UserService) {
 
-        $scope.error = null;
-
-        $scope.login = function login(user) {
+        //$scope.error = null;
+        //var user = $scope.user;
+        $scope.login = function (user) {
                             UserService.findUserByCredentials(user.username, user.password)
-                                .then(function(response){
-                                   var result = response.data;
-                                   if(result != null) {
-                                       $rootScope.currentUser = result;
-                                       //UserService.setCurrentUser(result);
-                                       $location.url("/profile");
-                                   } else {
-                                       $scope.error = "User not present";
-                                   }
-                           });
-        };
+                                .then(
+                                    function(user){
+                                        if(user.data != null) {
+                                            $rootScope.currentUser = user.data;
+
+                                        } else {
+                                            //$scope.error = "User not present";
+                                        }
+                                        $location.url('/profile');
+                                    },
+                                    function(error) {
+                                        console.log("Error Function");
+                                    });
+                        };
     }
 
 })();
