@@ -6,7 +6,6 @@ module.exports = function(app) {
     var formData = require("./form.mock.json");
     var newFormId = require("node-uuid");
 
-
     var model = {
         createFormModel :createFormModel,
         updateFormByFormIdModel : updateFormByFormIdModel,
@@ -39,7 +38,7 @@ module.exports = function(app) {
             formFound.title = form.title;
             formFound.userId = form.userId;
             formFound.fields = form.fields;
-            return formData;
+            return formFound;
         }
         return null;
     }
@@ -51,7 +50,6 @@ module.exports = function(app) {
                 formList.push(formData[i]);
             }
         }
-
         if(!formList.length)
             return null;
         return formList;
@@ -66,11 +64,28 @@ module.exports = function(app) {
         return null;
     }
 
+    function getUserIdByFormId(formId) {
+        for(i in formData) {
+            if(formId == formData[i]._id) {
+                return formData[i].userId;
+            }
+        }
+        return null;
+    }
+
     function deleteFormByFormIdModel(formId) {
         var formFound = getFormByFormIdModel(formId);
+        var userId = getUserIdByFormId(formId);
+        var formList = [];
+
         if(formFound) {
             formData.splice(formFound, 1);
-            return formData;
+            for(i in formData) {
+                if(userId == formData[i].userId) {
+                    formList.push(formData[i]);
+                }
+            }
+            return formList;
         }
         return null;
     }

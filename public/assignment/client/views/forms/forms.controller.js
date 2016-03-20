@@ -4,7 +4,7 @@
 "use strict";
 (function()
 {
-    angular
+     angular
         .module("FormBuilderApp")
         .controller("FormController", formController);
 
@@ -31,47 +31,46 @@
         function addForm(form){
             if(!form || !form.title)
                 return;
-            FormService.createFormForUser(
-                currentUser._id,
-                form,
-                function(form){
-                    FormService.findAllFormsForUser(
-                        currentUser._id,
-                        function(forms){
-                            $scope.forms = forms;
-                            $scope.form = {};
-                        });
-                }
-            )
+            FormService.createFormForUser(currentUser._id, form)
+                       .then(function(forms) {
+                            retrieveUserIdForms();
+                       }, function(error) {
+                           console.log("Unable to create a form.")
+                       });
+        }
+
+        function retrieveUserIdForms() {
+            FormService.findAllFormsForUser(currentUser._id)
+                .then(function(forms){
+                    $scope.forms = forms.data;
+                    $scope.form = {};
+                }, function(error) {
+                    console.log("Unable to retrieve forms based on the given user id");
+                });
         }
 
         function updateForm(form){
-            FormService.updateFormById(form._id,
-                form,
-                function(form){
+            FormService.updateFormById(form._id, form)
+                .then(function(updatedForm){
                     if (selectedIndex>=0){
                         $scope.forms[selectedIndex]=form;
                         $scope.form={};
                         selectedIndex=-1;
                     }
-                }
-            );
+                }, function(error){
+                    console.log("Unable to update form");
+                });
         }
 
-        function deleteForm(index){
+        function deleteForm(index) {
             var forms = $scope.forms;
             var formId = forms[index]._id;
-            FormService.deleteFormById(
-                formId,
-                function(forms){
-                    FormService.findAllFormsForUser(
-                        currentUser._id,
-                        function(deletedForms){
-                            $scope.forms = deletedForms;
-                        }
-                    )
+            FormService.deleteFormById(formId)
+                .then(function (allForms) {
+                    $scope.forms = allForms.data;
+                }, function (error) {
+                    console.log("Unable to delete the form");
                 });
-            console.log($scope.forms);
         }
 
         function selectForm(index){

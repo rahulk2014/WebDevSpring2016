@@ -28,5 +28,4 @@ module.exports = function(app, formModel) {
     function updateField(req, res) {
         res.json(formModel.updateField(req.params.formId, req.params.fieldId, req.body));
     }
-
 }
