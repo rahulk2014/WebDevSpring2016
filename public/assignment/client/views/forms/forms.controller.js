@@ -22,7 +22,7 @@
                 });
         }
         $scope.$location = $location;
-        $scope.addForm = addForm;
+        $scope.addForm    = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;

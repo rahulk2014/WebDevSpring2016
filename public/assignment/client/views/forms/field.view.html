@@ -8,15 +8,73 @@
         <div class="form-group">
             <label>Add New Field : </label>
             <div class="row">
-                <div class="col-sm-6 col-xs-6">
-                    <select ng-model="fieldType" class="form-control" id="inputAddNewField">
-                        <option>Single Line Text</option>
-                        <option>Date</option>
-                        <option>Dropdown</option>
-                        <option>Checkboxes</option>
-                        <option>Radio buttons</option>
-                        <option>Multi Line Text Field</option>
+                <div class="col-sm-7 col-xs-7">
+                    <select ng-model="field.fieldType" class="form-control" id="inputAddNewField">
+                        <option value="Single Line Text">Single Line Text</option>
+                        <option value="Date">Date</option>
+                        <option value="Dropdown">Dropdown</option>
+                        <option value="Checkboxes">Checkboxes</option>
+                        <option value="Radio buttons">Radio buttons</option>
+                        <option value="Multi Line Text Field">Multi Line Text Field</option>
                     </select>
+                </div>
+                <div class="col-sm-5 col-xs-5">
+                    <div>
+                        <a ng-click="addField(field.fieldType)">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-repeat="field in fields">
+            <div class="row">
+                <div ng-switch on="field.type">
+                    <div class="col-sm-7 col-xs-5">
+                        <div ng-switch-when="TEXT">
+                            <label>{{field.label}}</label>
+                            <input type="text" class="form-control" placeholder="{{field.placeholder}}">
+                        </div>
+                        <div ng-switch-when="EMAIL">
+                            <label>{{field.label}}</label>
+                            <input type="email" class="form-control" placeholder="{{field.placeholder}}">
+                        </div>
+                        <div ng-switch-when="DATE">
+                            <label>{{field.label}}</label>
+                            <input type="date" class="form-control" placeholder="{{field.placeholder}}">
+                        </div>
+                        <div ng-switch-when="TEXTAREA">
+                            <label>{{field.label}}</label>
+                            <input type="textarea" class="form-control" placeholder="{{field.placeholder}}">
+                        </div>
+                        <div ng-switch-when="OPTIONS">
+                            <label>{{field.label}}</label>
+                            <select class="form-control">
+                                <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}</option>
+                            </select>
+                        </div>
+                        <div ng-switch-when="CHECKBOXES">
+                            <label>{{field.label}}</label>
+                            <div class="checkbox" ng-repeat="option in field.options">
+                                <input type="checkbox" value="{{option.value}}">{{option.label}}
+                            </div>
+                        </div>
+                        <div ng-switch-when="RADIOS">
+                            <label>{{field.label}}</label>
+                            <div class="radio" ng-repeat="option in field.options">
+                                <input type="radio" value="{{option.value}}" name="{{field.label}}"> {{option.label}}
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-sm-5 col-xs-7">
+                    <div class="btn-group" align right>
+                        <a class="glyphicon glyphicon-pencil" ng-click="updateField($index)" data-toggle="modal" data-target="#myModal"></a>
+                        <a class="glyphicon glyphicon-plus" ng-click=""></a>
+                        <a class="glyphicon glyphicon-remove" ng-click="deleteField($index)"></a>
+                        <a class="glyphicon glyphicon-reorder" ng-click=""></a>
+                    </div>
                 </div>
             </div>
         </div>

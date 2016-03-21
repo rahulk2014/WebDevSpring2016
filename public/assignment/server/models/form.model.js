@@ -154,7 +154,7 @@ module.exports = function(app) {
                     "placeholder": field.placeholder
                 }
                 formData[i].fields.push(newField);
-                return newField;
+                return formData[i].fields;
             }
         }
         return null;
@@ -174,7 +174,8 @@ module.exports = function(app) {
                         fieldObj.label = field.label;
                         fieldObj.type = field.type;
                         fieldObj.placeholder = field.placeholder;
-                        return fieldObj
+                        fields.push(fieldObj);
+                        return fields;
                     }
 
                 }
