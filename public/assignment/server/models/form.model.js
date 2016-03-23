@@ -96,8 +96,9 @@ module.exports = function(app) {
       Returns all the fields for a specific formId
      */
     function getFieldsForForm(formId) {
+        console.log("In getFieldsForForm")
         for(i in formData) {
-            if(formData[i].formId == formId) {
+            if(formData[i]._id == formId) {
                 return formData[i].fields;
             }
         }
@@ -110,7 +111,7 @@ module.exports = function(app) {
     function getFieldIdForForm(formId, fieldId) {
 
         for(i in formData) {
-            if(formData[i].formId == formId){
+            if(formData[i]._id == formId){
                 var fields = formData[i].fields;
                 for(j in fields) {
                     if(fields[j].fieldId == fieldId) {
@@ -128,7 +129,7 @@ module.exports = function(app) {
     function deleteFieldFromForm(formId, fieldId) {
 
         for(i in formData) {
-            if(formData[i].formId == formId) {
+            if(formData[i]._id == formId) {
                 var fields = formData[i].fields;
                 for(j in fields) {
                     if(fields[j].fieldId == fieldId) {
@@ -146,7 +147,7 @@ module.exports = function(app) {
      */
     function createFieldForForm(formId, field) {
         for(i in formData) {
-            if(formData[i].formId == formId) {
+            if(formData[i]._id == formId) {
                 var newField = {
                     "_id": field._id,
                     "label": field.label,
@@ -165,7 +166,7 @@ module.exports = function(app) {
      */
     function updateField(formId, fieldId, field) {
         for(i in formData) {
-            if(formData[i].formId == formId) {
+            if(formData[i]._id == formId) {
                 var fields = formData[i].fields;
                 for(j in fields) {
                     if(fields[j].fieldId == fieldId){

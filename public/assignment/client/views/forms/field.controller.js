@@ -11,6 +11,7 @@
 
     function fieldController($scope, $rootScope, $routeParams, FieldService){
 
+        console.log("Inside Field Controller");
         var formId = $routeParams.formId;
         var userId = $rootScope.userId;
 
@@ -54,7 +55,23 @@
         }
 
         $scope.updateField = function(index) {
-            
+            if($scope.fields[index].type == "OPTIONS" ||
+                $scope.fields[index].type == "CHECKBOXES"||
+                $scope.fields[index].type == "RADIOS"){
+                $scope.fieldsForModal = $scope.fields[index];
+                var jsonOptions = JSON.stringify($scope.fields[index].options);
+                jsonOptions = JSON.parse(jsonOptions);
+                var options = "";
+                for(var i = 0 ;i<jsonOptions.length; i++){
+                    options += jsonOptions[i].label+","+jsonOptions[i].value+"\n";
+                }
+                $scope.displayModalOptions = options;
+                $scope.displayModalLabel = $scope.fields[index].label;
+
+            }else{
+                $scope.fieldsForModal = $scope.fields[index];
+            }
+
         }
 
         $scope.deleteField = function(index) {
