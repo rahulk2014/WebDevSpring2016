@@ -38,53 +38,12 @@
 
 </head>
 
-<body ng-controller="MainController" src="./resources/mad-world-bgc.jpg">
+<body ng-controller="MainController">
 <h3>MAD WORLD</h3>
 <!-- Include the Header and the SideBar-->
 <!--<div ng-include ="'views/header/header.view.html'"></div>-->
-<div class="container-fluid">
-    <div id="scroll" ng-model="category.fields">
-        <ul>
-            <li><a href="#">CATEGORY 1</a></li>
-            <li><a href="#">CATEGORY 2</a></li>
-            <li><a href="#">CATEGORY 3</a></li>
-            <li><a href="#">CATEGORY 4</a></li>
-            <li><a href="#">CATEGORY 5</a></li>
-            <li><a href="#">CATEGORY 6</a></li>
-            <li><a href="#">CATEGORY 7</a></li>
-            <li><a href="#">CATEGORY 8</a></li>
-            <li><a href="#">CATEGORY 9</a></li>
-            <li><a href="#">CATEGORY 1</a></li>
-            <li><a href="#">CATEGORY 2</a></li>
-            <li><a href="#">CATEGORY 3</a></li>
-            <li><a href="#">CATEGORY 4</a></li>
-            <li><a href="#">CATEGORY 5</a></li>
-            <li><a href="#">CATEGORY 6</a></li>
-            <li><a href="#">CATEGORY 7</a></li>
-            <li><a href="#">CATEGORY 8</a></li>
-            <li><a href="#">CATEGORY 9</a></li>
-        </ul>
-    </div>
-    <div>
-        <ul>
-            <li> <label>CATEGORY 1</label></li>
-            <li></li>
-        </ul>
-    </div>
-            <canvas id="myCanvas1" width="100" height="50" style="margin-left:50px; border:1px solid #000000;background-color:red;"></canvas><br>
-            <canvas id="myCanvas7" width="100" height="50" style="margin-left:50px; border:1px solid #000000;background-color:red;"></canvas><br>
-            <canvas id="myCanvas2" width="100" height="50" style="margin-left:50px; border:1px solid #000000;background-color:blue;">EXP 2</canvas><br>
-            <canvas id="myCanvas3" width="100" height="50" style="margin-left:50px; border:1px solid #000000;background-color:brown;">EXP 3</canvas><br>
-            <canvas id="myCanvas4" width="100" height="50" style="margin-left:50px; border:1px solid #000000;background-color:white;">EXP 4</canvas><br>
-
-    <div class="showExperiment">
-        <canvas id="myCanvas1" width="500" height="200" style="margin-left:50px; border:1px solid #000000; background-color: white"></canvas><br>
-        <button class="playGameButton">PLAY <GAME></GAME></button>
-    </div>
-    <!--<div class="row">-->
-        <!--&lt;!&ndash;<div ng-include="'views/sidebar/sidebar.view.html'"></div>&ndash;&gt;-->
-        <!--<div ng-view></div>-->
-    <!--</div>-->
+<div>
+    <div ng-view></div>
 </div>
 
 <!-- Bootstrap core JavaScript
