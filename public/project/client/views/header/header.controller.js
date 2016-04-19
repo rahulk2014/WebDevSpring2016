@@ -1,14 +1,19 @@
 /**
  * Created by rahul on 3/25/16.
  */
-"use strict";
+(function() {
 
-(function(){
     angular
-        .module("SongsForYouApp")
+        .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $location) {
-
+    function HeaderController($scope, $location, UserService, $rootScope) {
+        console.log("In Header Controller");
+        $scope.$location = $location;
+        $scope.logout = function(){
+            $rootScope.currentUser = null;
+            $location.url("/");
+            //UserService.setCurrentUser(null);
+        }
     }
 })();

@@ -1,0 +1,39 @@
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="RegisterController">
+            <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
+            <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+
+            <h1 class="page-header">Register</h1>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">Username :</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="username" placeholder="UserName" ng-model="user.username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-xs-6 col-sm-3 control-label">Password :</label>
+                    <div class=" col-sm-9">
+                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="verifyPassword" class="col-xs-6 col-sm-3 control-label">Verify Password :</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="verifyPassword" placeholder="Password" ng-model="user.confirmPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-xs-6 col-sm-3 control-label">Email :</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-color" ng-click="register(user)">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
