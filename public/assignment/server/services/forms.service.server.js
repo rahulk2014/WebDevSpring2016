@@ -2,41 +2,47 @@
  * Created by rahul on 3/18/16.
  */
 module.exports = function(app, formModel) {
-    app.get("/api/assignment/user/:userId/form", getFormsByUserIdService);
-    app.get("/api/assignment/form/:formId", getFormByFormIdService);
-    app.delete("/api/assignment/form/:formId", deleteFormByFormIdService);
-    app.post("/api/assignment/user/:userId/form", createFormService);
-    app.put("/api/assignment/form/:formId", updateFormByFormIdService);
 
-    function updateFormByFormIdService(req, res) {
-        var formId = req.params.formId;
-        var form = req.body;
-        var result = formModel.updateFormByFormIdModel(formId, form);
-        res.json(result);
+    app.get("/api/assignment/user/:userId/form", getFormByUserId);
+    app.get("/api/assignment/form/:formId", getFormById);
+    app.delete("/api/assignment/form/:formId", deleteForm);
+    app.post("/api/assignment/user/:userId/form", create);
+    app.put("/api/assignment/form/:formId", update);
+    app.get("/api/assignment/form?formTitle=formTitle", getFormByTitle);
+
+    function update(req, res){
+        model.update(req.params.formId, req.body).then(
+            function(response){
+                res.json(response);
+            });
+
     }
 
-    function createFormService(req, res) {
-        var userId = req.params.userId;
-        var newForm = req.body;
-        var result = formModel.createFormModel(userId, newForm);
-        res.json(result);
+    function create(req, res){
+        model.create(req.params.userId, req.body).then(
+            function(response){
+                res.json(response);
+            });
+    }
+    function deleteForm(req, res){
+        model.remove(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
     }
 
-    function deleteFormByFormIdService(req, res) {
-        var result = formModel.deleteFormByFormIdModel(req.params.formId);
-        res.json(result);
+    function getFormByUserId(req, res){
+        model.findFormByUserId(req.params.userId).then(
+            function(response){
+                res.json(response);
+            });
     }
+    function getFormByTitle(req, res){
 
-    function getFormsByUserIdService(req, res) {
-        var result = formModel.getFormsByUserIdModel(req.params.userId);
-        console.log("HI : " + result.length);
-        res.json(result);
+        var formTitle = req.param("formTitle");
+        model.findFormByTitle(formTitle)
+            .then(function(response){
+                res.json(response);
+            });
     }
-
-    function getFormByFormIdService(req, res) {
-        var result = formModel.getFormByFormIdModel(req.params.formId);
-        res.json(result);
-    }
-
-
 }

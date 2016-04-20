@@ -1,6 +1,8 @@
 /**
  * Created by rahul on 3/18/16.
  */
+"use strict";
+
 module.exports = function(app, Usermodel) {
     console.log("In User Server Service");
 

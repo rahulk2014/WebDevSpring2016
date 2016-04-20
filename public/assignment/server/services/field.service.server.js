@@ -3,11 +3,11 @@
  */
 module.exports = function(app, formModel) {
 
-    app.get("/api/assignment/form/:formId/field", getFieldsForForm);
-    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldIdForForm);
-    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldFromForm);
-    app.post("/api/assignment/form/:formId/field", createFieldForForm);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateField);
+    app.get("/api/assignment/form/:formId/field", getFieldsByFormId);
+    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldByFormIdAndFieldId);
+    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFormIdAndFieldId);
+    app.post("/api/assignment/form/:formId/field", createFieldByFormId);
+    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFormIdAndFieldId);
 
     function getFieldsForForm(req, res) {
         res.json(formModel.getFieldsForForm(req.params.formId));
@@ -28,4 +28,6 @@ module.exports = function(app, formModel) {
     function updateField(req, res) {
         res.json(formModel.updateField(req.params.formId, req.params.fieldId, req.body));
     }
+
+
 }
