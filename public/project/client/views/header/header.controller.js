@@ -4,10 +4,10 @@
 (function() {
 
     angular
-        .module("FormBuilderApp")
+        .module("SongsForYouApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $location, UserService, $rootScope) {
+    function HeaderController($scope, $location, $rootScope) {
         console.log("In Header Controller");
         $scope.$location = $location;
         $scope.logout = function(){

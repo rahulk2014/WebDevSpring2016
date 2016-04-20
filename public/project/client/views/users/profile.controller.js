@@ -5,7 +5,7 @@
 (function () {
 
     angular
-        .module("FormBuilderApp")
+        .module("SongsForYouApp")
         .controller("ProfileController", profileControllerFunction);
 
     function profileControllerFunction($scope, $rootScope, UserService) {

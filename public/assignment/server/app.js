@@ -2,12 +2,16 @@
  * Created by rahul on 3/17/16.
  */
 
-module.exports = function(app) {
-    var userModel = require("./models/user.model.js")();
-    require("./services/user.service.server.js")( app, userModel);
+"use strict";
+module.exports = function(app, mongoose, webDevDb) {
 
-    var formModel = require("./models/form.model.js")();
-    require("./services/forms.service.server.js")( app, formModel);
+    var userModel = require("./models/user.model.js")(mongoose, webDevDb);
+    require("./services/user.service.server.js")(app,userModel);
 
-    require("./services/field.service.server.js")(app, formModel);
+    var formModel = require("./models/form.model.js")(mongoose, webDevDb);
+    require("./services/form.service.server.js")(app,formModel);
+
+    var fieldModel = require("./models/field.model.js")(mongoose,webDevDb);
+    require("./services/field.service.server.js")(app,fieldModel);
+
 };

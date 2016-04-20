@@ -6,7 +6,7 @@
 (function(){
 
     angular
-        .module("FormBuilderApp")
+        .module("SongsForYouApp")
         .controller("RegisterController", registerController);
 
     function registerController($location, $scope, UserService) {

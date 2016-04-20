@@ -4,7 +4,23 @@ body {
     padding-bottom: 20px;
 }
 
+h1 {
+    color : yellow;
+}
+
 .upper-body {
-    #background-image: url("../../resources/music-bcg.jpeg");
-    background-color: #428bca;
+    background-image: url("../../resources/World_Music_a.jpg");
+    background-size: cover;
+}
+
+.bluesAndJazz {
+    background-color: lightskyblue;
+}
+
+.bollywood {
+    background-color : pink;
+}
+
+.classicRock {
+    background: black;
 }
