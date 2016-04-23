@@ -1,7 +1,7 @@
 /**
  * Created by rahul on 3/18/16.
  */
-module.exports = function(app, formModel) {
+module.exports = function(app, model) {
 
     app.get("/api/assignment/user/:userId/form", getFormByUserId);
     app.get("/api/assignment/form/:formId", getFormById);
