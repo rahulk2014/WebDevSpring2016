@@ -37,6 +37,14 @@ module.exports = function(app, model) {
                 res.json(response);
             });
     }
+
+    function getFormById(req, res){
+        model.findById(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
     function getFormByTitle(req, res){
 
         var formTitle = req.param("formTitle");

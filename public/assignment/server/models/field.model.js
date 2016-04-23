@@ -6,7 +6,7 @@
 
 var q = require("q");
 
-module.exports = function(mongoose, webDevDb) {
+module.exports = function(mongoose, db) {
 
     var FormSchema = require('./form.schema.server.js')(mongoose);
     var FormModel = mongoose.model("Field", FormSchema);
