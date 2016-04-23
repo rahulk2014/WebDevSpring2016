@@ -37,7 +37,7 @@
         }
 
         function setCurrentUser (user) {
-            $rootScope.loggedUser = user;
+            $rootScope.currentUser = user;
         }
 
         function findUserByUsername (username) {

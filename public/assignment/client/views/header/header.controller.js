@@ -11,9 +11,10 @@
         console.log("In Header Controller");
         $scope.$location = $location;
         $scope.logout = function(){
-            $rootScope.currentUser = null;
-            $location.url("/");
-            //UserService.setCurrentUser(null);
+            UserService.logout().then(
+                function(response){
+                    $rootScope.currentUser = null;
+                });
         }
     }
 })();

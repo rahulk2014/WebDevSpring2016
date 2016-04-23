@@ -9,7 +9,18 @@
         .controller("ProfileController", profileControllerFunction);
 
     function profileControllerFunction($scope, $rootScope, UserService) {
-        $scope.profile = $rootScope.currentUser;
+        UserService.getCurrentUser().then(
+            function (response){
+                console.log("give me the current logged user");
+                console.log(response.data);
+                UserService.setCurrentUser(response.data);
+                $scope.user = response.data;
+
+            });
+
+
+        $scope.profile = $scope.user;
+
 
 
         $scope.update = function update(profile) {
@@ -30,7 +41,9 @@
                 .then(function(response){
                     if(response.data) {
                         $scope.message = "Successfully Updated";
+                        $scope.profile = response.data;
                         UserService.setCurrentUser(response.data);
+                        $location.path('/profile');
                     }
                     else {
                         $scope.error = "Unable to update";

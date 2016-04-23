@@ -10,44 +10,35 @@
 
     function formController($scope, $rootScope , $location, UserService, FormService) {
 
-        var currentUser = UserService.getCurrentUser();
-        if('undefined' === typeof currentUser) {
-            $location.url("/home");
-        } else {
-            FormService.findAllFormsForUser(currentUser._id)
-                .then(function(forms){
-                    $scope.forms = forms.data;
-                }, function(error){
-                    console.log("Unable to get forms for UserId");
-                });
-        }
-        $scope.$location = $location;
+        UserService.getCurrentUser().then(
+            function(response){
+                $scope.user = response.data;
+                UserService.setCurrentUser(response.data);
+                FormService.findAllFormsForUser($scope.user._id).then(
+                    function(response){
+                        $scope.loggedUserForms = response.data;
+                    });
+            });
+
         $scope.addForm    = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
         var selectedIndex = -1;
 
-        function addForm(form){
-            if(!form || !form.title)
-                return;
-            FormService.createFormForUser(currentUser._id, form)
-                       .then(function(forms) {
-                            retrieveUserIdForms();
-                       }, function(error) {
-                           console.log("Unable to create a form.")
-                       });
-        }
+        var currentForm = {};
 
-        function retrieveUserIdForms() {
-            FormService.findAllFormsForUser(currentUser._id)
-                .then(function(forms){
-                    $scope.forms = forms.data;
-                    $scope.form = {};
-                }, function(error) {
-                    console.log("Unable to retrieve forms based on the given user id");
-                });
-        }
+        $scope.addForm = function() {
+            if($scope.form!=null) {
+                currentForm.title = $scope.form;
+                FormService.createFormForUser($scope.user._id, currentForm).then(
+                    function(response){
+                        $scope.forms.push(response.data);
+                    });
+                $scope.form = null;
+                currentForm = {};
+            }
+        };
 
         function updateForm(form){
             FormService.updateFormById(form._id, form)

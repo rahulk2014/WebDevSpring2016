@@ -14,20 +14,20 @@
         $scope.message = null;
         //var user = $scope.user;
         $scope.login = function (user) {
-                            UserService.findUserByCredentials(user.username, user.password)
-                                .then(
-                                    function(user){
-                                        if(user.data != null) {
-                                            $rootScope.currentUser = user.data;
-                                            $location.url('/profile');
-                                        } else {
-                                            $scope.message = "User Not Found"
-                                        }
+            UserService.login(user).then(
+                function (response){
+                    console.log(response);
+                    if(response.data == null){
+                        $scope.message = "Username and Password does not match, new User please register";
+                    }
+                    else{
+                        console.log("User exists");
+                        UserService.setCurrentUser(response.data);
+                        console.log(response.data);
+                        $location.url("/profile");
+                    }
 
-                                    },
-                                    function(error) {
-                                        console.log("Error Function");
-                                    });
+                });
                         };
     }
 
