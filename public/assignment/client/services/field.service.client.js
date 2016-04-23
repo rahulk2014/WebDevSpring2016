@@ -2,42 +2,49 @@
  * Created by rahul on 3/19/16.
  */
 (function(){
-
+    "use strict";
     angular
         .module("FormBuilderApp")
-        .factory("FieldService", fieldService);
+        .factory("FieldService",FieldService);
 
-    function fieldService($http) {
+    function FieldService($http){
 
-        var model = {
-            getFieldsForForm: getFieldsForForm,
-            getFieldIdForForm: getFieldIdForForm,
-            deleteFieldFromForm: deleteFieldFromForm,
+        var service = {
             createFieldForForm: createFieldForForm,
+            getFieldsForForm: getFieldsForForm,
+            getFieldForForm: getFieldForForm,
+            deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField
+        };
+
+        return service;
+
+        function createFieldForForm (formId,field){
+            var url = "/api/assignment/form/"+formId+"/field";
+            return $http.post(url,field);
         }
 
-        return model;
-
-        function getFieldsForForm(formId) {
-            return $http.get("/api/assignment/form/"+formId+"/field");
+        function getFieldsForForm (formId,field){
+            var url = "/api/assignment/form/"+formId+"/field";
+            return $http.get(url,field);
         }
 
-        function getFieldIdForForm(formId, fieldId) {
-            return $http.get("/api/assignment/form/"+formId+"/field/"+fieldId);
+        function getFieldForForm (formId,fieldId){
+            var url = "/api/assignment/form/"+formId+"/field/"+fieldId;
+            return $http.get(url);
         }
 
-        function createFieldForForm(formId, field) {
-            return $http.post("/api/assignment/form/"+formId+"/field/", field);
+        function deleteFieldFromForm(formId,fieldId){
+            console.log("field service client js");
+            console.log(fieldId);
+
+            var url = "/api/assignment/form/"+formId+"/field/"+fieldId;
+            return $http.delete(url);
         }
 
-        function updateField(formId, fieldId, field) {
-            return $http.put("/api/assignment/form/"+formId+"/field/"+fieldId, field);
-        }
-
-        function deleteFieldFromForm(formId, fieldId) {
-            return $http.delete("/api/assignment/form/"+formId+"/field/"+fieldId);
+        function updateField(formId,fieldId,field){
+            var url = "/api/assignment/form/"+formId+"/field/"+fieldId;
+            return $http.post(url,field);
         }
     }
-
 })();
