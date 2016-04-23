@@ -1,33 +1,58 @@
 /**
  * Created by rahul on 3/19/16.
  */
-module.exports = function(app, formModel) {
+"use strict";
 
-    app.get("/api/assignment/form/:formId/field", getFieldsByFormId);
-    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldByFormIdAndFieldId);
-    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFormIdAndFieldId);
-    app.post("/api/assignment/form/:formId/field", createFieldByFormId);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFormIdAndFieldId);
+module.exports = function(app,model){
 
-    function getFieldsForForm(req, res) {
-        res.json(formModel.getFieldsForForm(req.params.formId));
+    app.get("/api/assignment/user/:userId/form", getFormByUserId);
+    app.get("/api/assignment/form/:formId", getFormById);
+    app.delete("/api/assignment/form/:formId", deleteForm);
+    app.post("/api/assignment/user/:userId/form", create);
+    app.put("/api/assignment/form/:formId", update);
+    app.get("/api/assignment/form?formTitle=formTitle", getFormByTitle);
+
+    function getFormByUserId(req, res){
+        model.findFormByUserId(req.params.userId).then(
+            function(response){
+                res.json(response);
+            });
     }
 
-    function getFieldIdForForm(req, res) {
-        res.json(formModel.getFieldIdForForm(req.params.formId, req.params.fieldId));
+    function getFormById(req, res){
+        model.findById(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
     }
 
-    function deleteFieldFromForm(req, res) {
-        res.json(formModel.deleteFieldFromForm(req.params.formId, req.params.fieldId));
+    function deleteForm(req, res){
+        model.remove(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
     }
 
-    function createFieldForForm(req, res) {
-        res.json(formModel.createFieldForForm(req.params.formId, req.body));
+    function create(req, res){
+        model.create(req.params.userId, req.body).then(
+            function(response){
+                res.json(response);
+            });
     }
 
-    function updateField(req, res) {
-        res.json(formModel.updateField(req.params.formId, req.params.fieldId, req.body));
+    function update(req, res){
+        model.update(req.params.formId, req.body).then(
+            function(response){
+                res.json(response);
+            });
     }
 
+    function getFormByTitle(req, res){
 
-}
+        var formTitle = req.param("formTitle");
+        model.findFormByTitle(formTitle)
+            .then(function(response){
+                res.json(response);
+            });
+    }
+};
