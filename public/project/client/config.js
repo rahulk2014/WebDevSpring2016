@@ -31,12 +31,13 @@
                     templateUrl: "views/search/searchPage.view.html",
                     controller: "SearchController"
                 })
+                .when("/search/:query", {
+                    templateUrl: "views/search/searchPage.view.html",
+                    controller: "SearchController"
+                })
                 .otherwise({
                     redirectTo: "/"
                 });
 
         })
-
-
-
 })();

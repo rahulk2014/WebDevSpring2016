@@ -8,8 +8,10 @@
 
     app.controller("SearchController", SearchController);
 
-    function SearchController($scope, $location) {
+    function SearchController($routeParams) {
         console.log("In Search Controller");
-        $scope.$location = $location;
+        var vm = this;
+        var query = $routeParams.query;
+        console.log(query);
     }
 })();
