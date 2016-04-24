@@ -10,7 +10,5 @@
 
     function HomeController($scope, $location) {
         console.log("In Home controller");
-
-
     }
 })();

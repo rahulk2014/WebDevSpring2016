@@ -70,3 +70,21 @@ h4#projectSubHeading {
     color : lightgreen;
     text-align: center;
 }
+
+#projectHeadingButton {
+    position: absolute;
+    top : 70%;
+    bottom:0;
+    left: 50%;
+    right : 50%;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}

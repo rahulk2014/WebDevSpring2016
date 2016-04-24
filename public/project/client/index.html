@@ -50,21 +50,20 @@
 
     <!-- Include the Header and the SideBar-->
     <div ng-include ="'views/header/header.view.html'"></div>
-
     <!-- Video Section -->
     <section>
         <div class="homepage-hero-module">
             <div class="video-container">
                 <!--<div class="filter">-->
-                    <!--<h3>Welcome To The World Of Music </h3><br/><br/>-->
-                    <!--<h4>Search, Listen and Store your favorite music</h4>-->
+                <!--<h3>Welcome To The World Of Music </h3><br/><br/>-->
+                <!--<h4>Search, Listen and Store your favorite music</h4>-->
                 <!--</div>-->
                 <video autoplay loop class="fillWidth">
-                    <source src="../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-                    <source src="../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                    <source src="../../../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                    <source src="../../../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
                 </video>
                 <div class="poster hidden">
-                    <img src="../../project/resources/Cheer-Up/Snapshots/Cheer-Up.jpg" alt="">
+                    <img src="../../../../project/resources/Cheer-Up/Snapshots/Cheer-Up.jpg" alt="">
                 </div>
                 <h3 id="projectHeading">
                     WELCOME
@@ -72,10 +71,13 @@
                 <h4 id="projectSubHeading">
                     Search, store and listen to your favorite songs.
                 </h4>
+                <button type="button" id="projectHeadingButton" class="btn btn-default btn-circle"
+                        ng-click="">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>
-    <section></section>
 
 
     <div class="container-fluid">
