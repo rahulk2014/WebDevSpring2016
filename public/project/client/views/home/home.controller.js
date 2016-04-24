@@ -10,10 +10,7 @@
 
     function HomeController($scope, $location) {
         console.log("In Home controller");
-        $scope.$location = $location;
 
-        $scope.searchSpanishFlamenco = function() {
-            console.log("In searchSpanishFlamenco");
-        }
+
     }
 })();
