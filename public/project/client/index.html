@@ -35,6 +35,7 @@
     <!--<script src="services/user.service.client.js"></script>-->
     <script src="views/main/main.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
+    <script src="views/search/searchPage.controller.js"></script>
     <!--<script src="views/sidebar/sidebar.controller.js"></script>-->
     <script src="views/home/home.controller.js"></script>
     <!--<script src="views/admin/admin.controller.js"></script>-->
@@ -52,7 +53,7 @@
     <div ng-include ="'views/header/header.view.html'"></div>
     <!-- Video Section -->
     <section>
-        <div class="homepage-hero-module">
+        <div class="homepage-hero-module" ng-controller="HomeController">
             <div class="video-container">
                 <!--<div class="filter">-->
                 <!--<h3>Welcome To The World Of Music </h3><br/><br/>-->
@@ -72,7 +73,7 @@
                     Search, store and listen to your favorite songs.
                 </h4>
                 <button type="button" id="projectHeadingButton" class="btn btn-default btn-circle"
-                        ng-click="">
+                        ng-click="clickedOnButton()">
                     <i class="glyphicon glyphicon-chevron-down"></i>
                 </button>
             </div>

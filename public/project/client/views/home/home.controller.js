@@ -10,5 +10,10 @@
 
     function HomeController($scope, $location) {
         console.log("In Home controller");
+
+        $scope.clickedOnButton = function() {
+            console.log("Clicked search button");
+            $location.url("/search");
+        }
     }
 })();

@@ -6,10 +6,10 @@
 (function(){
     var app = angular.module("SongsForYouApp");
 
-    app.controller("MainController", MainController);
+    app.controller("SearchController", SearchController);
 
-    function MainController($scope, $location) {
-        console.log("In main Controller");
+    function SearchController($scope, $location) {
+        console.log("In Search Controller");
         $scope.$location = $location;
     }
 })();
