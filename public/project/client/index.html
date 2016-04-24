@@ -12,7 +12,7 @@
     <title>Songs For You</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/video.js"></script>
+
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -28,16 +28,17 @@
 
     <script src="app.js"></script>
     <script src="config.js"></script>
-
+    <!--<script src="js/video.js"></script>-->
 
     <!--<script src="services/forms.service.client.js"></script>-->
     <!--<script src="services/field.service.client.js"></script>-->
     <!--<script src="services/user.service.client.js"></script>-->
+    <script src="views/home/home.controller.js"></script>
     <script src="views/main/main.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/search/searchPage.controller.js"></script>
     <!--<script src="views/sidebar/sidebar.controller.js"></script>-->
-    <script src="views/home/home.controller.js"></script>
+
     <!--<script src="views/admin/admin.controller.js"></script>-->
     <!--<script src="views/users/register.controller.js"></script>-->
     <!--<script src="views/users/profile.controller.js"></script>-->
@@ -47,43 +48,15 @@
 
 </head>
 
-<body id="page-top" ng-controller="MainController">
+<body ng-controller="MainController">
 
     <!-- Include the Header and the SideBar-->
     <div ng-include ="'views/header/header.view.html'"></div>
-    <!-- Video Section -->
-    <section>
-        <div class="homepage-hero-module" ng-controller="HomeController">
-            <div class="video-container">
-                <!--<div class="filter">-->
-                <!--<h3>Welcome To The World Of Music </h3><br/><br/>-->
-                <!--<h4>Search, Listen and Store your favorite music</h4>-->
-                <!--</div>-->
-                <video autoplay loop class="fillWidth">
-                    <source src="../../../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-                    <source src="../../../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-                </video>
-                <div class="poster hidden">
-                    <img src="../../../../project/resources/Cheer-Up/Snapshots/Cheer-Up.jpg" alt="">
-                </div>
-                <h3 id="projectHeading">
-                    WELCOME
-                </h3>
-                <h4 id="projectSubHeading">
-                    Search, store and listen to your favorite songs.
-                </h4>
-                <button type="button" id="projectHeadingButton" class="btn btn-default btn-circle"
-                        ng-click="clickedOnButton()">
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
 
     <div class="container-fluid">
         <div class="row">
-            <div ng-view></div>
+            <div ng-view>
+            </div>
         </div>
     </div>
 

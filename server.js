@@ -43,4 +43,10 @@ require("./public/assignment/server/app.js")(app, mongoose, db);
 //require("./public/project/server/app.js")(app, mongoose, db);
 
 
+app.options('*', function(req, res) {
+
+	res.send(200);
+
+});
+
 app.listen(port, ipaddress);
