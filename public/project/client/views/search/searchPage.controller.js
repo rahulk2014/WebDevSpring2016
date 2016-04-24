@@ -18,14 +18,22 @@
         if(query != null) {
             if(query == "")
                 return;
-            search(query);
+            searchByArtist(query);
         }
 
-        vm.search = search;
+        vm.searchByArtist = searchByArtist;
 
-        function search(query) {
-            SpotifyService.finddataByQuery(query)
+        function searchByArtist(query) {
+            SpotifyService.findSongsByArtist(query)
                 .then(renderResults, renderFailure);
+        }
+
+        function renderResults(){
+            console.log("Successfully fetched results");
+        }
+
+        function renderFailure(){
+            console.log("Failed to fetch results")
         }
 
     }

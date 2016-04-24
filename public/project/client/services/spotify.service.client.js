@@ -8,17 +8,17 @@
 
     function SpotifyService($http) {
 
-        var api = {
-            findDataByQuery : findDataByQuery
-        }
+        console.log("Inside spotify client service");
 
+        var api = {
+            findSongsByArtist: findSongsByArtist
+        }
         return api;
 
         // Return the results obtained from SPotify
-        function findDataByQuery(query) {
+        function findSongsByArtist(query) {
+            console.log("Inside findSongsByArtist() in client service");
             return $http.get("/api/project/search/" + query);
         }
     }
-
-
 })();
