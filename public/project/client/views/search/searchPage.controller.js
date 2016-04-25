@@ -18,13 +18,13 @@
         if(query != null) {
             if(query == "")
                 return;
-            searchByArtist(query);
+            searchTracks(query);
         }
 
-        vm.searchByArtist = searchByArtist;
+        vm.searchTracks = searchTracks;
 
-        function searchByArtist(query) {
-            SpotifyService.findSongsByArtist(query)
+        function searchTracks(query) {
+            SpotifyService.findTracks(query)
                 .then(renderResults, renderFailure);
         }
 

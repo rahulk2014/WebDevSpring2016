@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -40,7 +39,7 @@ app.use(session({
 
 
 require("./public/assignment/server/app.js")(app, mongoose, db);
-//require("./public/project/server/app.js")(app, mongoose, db);
+require("./public/project/server/app.js")(app, mongoose, db);
 
 
 app.options('*', function(req, res) {

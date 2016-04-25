@@ -11,8 +11,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <div class="col-sm-7 col-md-7 pull-left">
-                </div>
+                <form class="navbar-form navbar-left" role="search" ng-controller="SearchController">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search By Artist, Track Or Album" ng-model="model.query">
+
+                    <a href="#/search/{{model.query}}" type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></a>
+                    </div>
+                </form>
                 <li ng-class="{'active': $location.path() == '/register'}" ng-hide="currentUser"><a href="#/register">Register</a></li>
                 <li ng-class="{'active': $location.path() == '/login'}" ng-hide="currentUser"><a href="#/login">Login</a></li>
                 <li ng-class="{'active': $location.path() == '/profile'}" ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>

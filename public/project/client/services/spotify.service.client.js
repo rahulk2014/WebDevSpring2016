@@ -11,12 +11,12 @@
         console.log("Inside spotify client service");
 
         var api = {
-            findSongsByArtist: findSongsByArtist
+            findTracks: findTracks
         }
         return api;
 
         // Return the results obtained from SPotify
-        function findSongsByArtist(query) {
+        function findTracks(query) {
             console.log("Inside findSongsByArtist() in client service");
             return $http.get("/api/project/search/" + query);
         }
