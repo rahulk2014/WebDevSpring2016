@@ -1,14 +1,33 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="SearchController">
     <video id="bcgVid" autoplay loop class="fillWidth">
         <source src="../../../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
         <source src="../../../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
     </video>
     <h2 style="color : white;">Search Results for</h2>
-    <hr>
-    <div class="row">
-        <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6">
-          <div class=""></div>
+
+
+    <!--results.push({-->
+    <!--id : id,-->
+    <!--songname : name,-->
+    <!--uri : uri,-->
+    <!--artistname : artist,-->
+    <!--previewURL : previewURL-->
+    <!--});-->
+    <div class="container-fluid">
+
+        <div class="row" ng-repeat="result in model.searchResult">
+            <hr>
+            <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6">
+              <!-- Image-->
+                <h4> {{result.id}}</h4>
+            </div>
+            <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6">
+                <h4>{{result.artistname}}</h4>
+                <h4>{{result.songname}}</h4>
+            </div>
+
         </div>
+        <hr>
     </div>
 
 </div>

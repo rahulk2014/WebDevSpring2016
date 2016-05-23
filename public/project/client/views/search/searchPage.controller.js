@@ -4,16 +4,26 @@
 "use strict";
 
 (function(){
-    var app = angular.module("SongsForYouApp");
-
-    app.controller("SearchController", SearchController);
+    angular
+        .module("SongsForYouApp")
+        .controller("SearchController", SearchController);
 
     function SearchController($routeParams, SpotifyService) {
+
         console.log("In Search Controller");
         var vm = this;
+        vm.searchTracks = searchTracks;
+        vm.searchResult = null;
+        vm.temp = "Hello";
+
         var query = $routeParams.query;
-        vm.query = null;
-        console.log(query);
+
+
+        function init() {
+
+        }
+
+        init();
 
         if(query != null) {
             if(query == "")
@@ -21,15 +31,19 @@
             searchTracks(query);
         }
 
-        vm.searchTracks = searchTracks;
-
+        /**
+         * Function that returns results from the server.
+         * @param query
+         */
         function searchTracks(query) {
             SpotifyService.findTracks(query)
                 .then(renderResults, renderFailure);
         }
 
-        function renderResults(){
-            console.log("Successfully fetched results");
+        function renderResults(response){
+            console.log(response.data);
+            vm.searchResult = response.data;
+            console.log(vm.searchResult[0].artistname);
         }
 
         function renderFailure(){

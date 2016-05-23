@@ -27,13 +27,15 @@
                     templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController"
                 })
-                .when("/search", {
-                    templateUrl: "views/search/searchPage.view.html",
-                    controller: "SearchController"
-                })
+                //.when("/search", {
+                //    templateUrl: "views/search/searchPage.view.html",
+                //    controller: "SearchController",
+                //    controllerAs : "model"
+                //})
                 .when("/search/:query", {
                     templateUrl: "views/search/searchPage.view.html",
-                    controller: "SearchController"
+                    controller: "SearchController",
+                    controllerAs : "model"
                 })
                 .otherwise({
                     redirectTo: "/"

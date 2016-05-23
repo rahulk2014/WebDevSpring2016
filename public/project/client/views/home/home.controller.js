@@ -8,12 +8,7 @@
         .module("SongsForYouApp")
         .controller("HomeController", HomeController);
 
-    function HomeController($scope, $location) {
+    function HomeController($location) {
         console.log("In Home controller");
-
-        $scope.clickedOnButton = function() {
-            console.log("Clicked search button");
-            $location.url("/search");
-        }
     }
 })();

@@ -28,6 +28,7 @@ module.exports = function(app) {
             var allTracks = resultsFromSpotify['tracks'];
             var itemsInAllTracks = allTracks['items'];
             console.log(itemsInAllTracks.length);
+            console.log(itemsInAllTracks);
             for(var i = 0; i < itemsInAllTracks.length; ++i) {
                 var data = itemsInAllTracks[i];
                 //console.log(data);
@@ -52,7 +53,7 @@ module.exports = function(app) {
         }
 
 
-}
+};
 
 
 

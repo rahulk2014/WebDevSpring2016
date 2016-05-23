@@ -9,8 +9,8 @@
     app.controller("MainController", MainController);
 
     <!-- Set the location variable to scope-->
-    function MainController($scope, $location) {
+    function MainController() {
         console.log("In main Controller");
-        $scope.$location = $location;
+
     }
 })();

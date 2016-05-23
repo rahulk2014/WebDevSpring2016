@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 
-var w = 'webdev';
+var w = 'webdev2016	';
 //For localhost
 var connString = 'mongodb://127.0.0.1:27017/' + w;
 //For openshift
@@ -43,9 +43,7 @@ require("./public/project/server/app.js")(app, mongoose, db);
 
 
 app.options('*', function(req, res) {
-
 	res.send(200);
-
 });
 
 app.listen(port, ipaddress);
