@@ -46,7 +46,7 @@
         }
 
         function renderFailure(){
-            console.log("Failed to fetch results")
+            console.log("Failed to fetch results");
         }
 
     }
