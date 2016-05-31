@@ -14,7 +14,6 @@
         var vm = this;
         vm.searchTracks = searchTracks;
         vm.searchResult = null;
-        vm.temp = "Hello";
 
         var query = $routeParams.query;
 

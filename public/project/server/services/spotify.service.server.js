@@ -30,26 +30,22 @@ module.exports = function(app) {
             console.log(itemsInAllTracks);
             for(var i = 0; i < itemsInAllTracks.length; ++i) {
                 var data = itemsInAllTracks[i];
-
-                var image =
-                //console.log(data);
+                var albumData = data['album'];
+                var imagesList = albumData['images']
                 var artist = data['artists'][0]['name'];
-                //console.log(artist);
                 var name = data['name'];
-                //console.log(name);
                 var uri = data['uri'];
-                //console.log(uri);
                 var id = data['id'];
-                var previewURL = data["preview_url"];
+                var previewURL = data['preview_url'];
                 results.push({
                     id : id,
                     songname : name,
                     uri : uri,
                     artistname : artist,
-                    previewURL : previewURL
+                    previewURL : previewURL,
+                    image : imagesList[0]['url'],
                 });
             }
-            //console.log(results);
             return results;
         }
 
