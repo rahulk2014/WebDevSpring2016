@@ -24,13 +24,14 @@ module.exports = function(app) {
         function returnResults(resultsFromSpotify) {
             console.log("In Return Results");
             var results = [];
-           //console.log(resultsFromSpotify['tracks']);
             var allTracks = resultsFromSpotify['tracks'];
             var itemsInAllTracks = allTracks['items'];
             console.log(itemsInAllTracks.length);
             console.log(itemsInAllTracks);
             for(var i = 0; i < itemsInAllTracks.length; ++i) {
                 var data = itemsInAllTracks[i];
+
+                var image =
                 //console.log(data);
                 var artist = data['artists'][0]['name'];
                 //console.log(artist);
