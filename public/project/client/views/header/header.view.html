@@ -11,6 +11,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li ng-show="currentUser">
+                    <a href="" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </li>
                 <form class="navbar-form navbar-left" role="search" ng-controller="SearchController">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search By Artist, Track Or Album" ng-model="model.query">
@@ -37,3 +42,21 @@
         </div>
     </div>
 </nav>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

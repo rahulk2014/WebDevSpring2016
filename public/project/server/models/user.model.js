@@ -27,9 +27,9 @@ module.exports = function(db,mongoose,FollowModel) {
         addFriend:addFriend,
         findFriends:findFriends,
         findFollowers:findFollowers,
-        removeFriend:removeFriend,
-        updateFollower: updateFollower,
-        undoNotify:undoNotify
+        removeFriend:removeFriend
+        //updateFollower: updateFollower,
+        //undoNotify:undoNotify
     };
 
     return api;
