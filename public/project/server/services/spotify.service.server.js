@@ -22,7 +22,6 @@ module.exports = function(app) {
 
     function returnSongDetailResult(songDetailResult) {
         console.log("Inside return Song detail result");
-        console.log(songDetailResult);
 
         var imageURL = songDetailResult['album']['images'][0]['url'];
         var artists = songDetailResult['artists'][0];
@@ -36,7 +35,7 @@ module.exports = function(app) {
         var artistName = artists['name'];
         var artistURI = artists['uri'];
 
-        var songDetailResult = {
+        songDetailResult = {
             imageURL : imageURL,
             artistName : artistName,
             artistURI : artistURI,
@@ -46,7 +45,7 @@ module.exports = function(app) {
             trackName : trackName,
             duration_ms : duration_ms
         };
-        console.log(imageURL);
+        console.log(spotify_uri);
         return songDetailResult;
     }
 
@@ -69,8 +68,7 @@ module.exports = function(app) {
         var results = [];
         var allTracks = resultsFromSpotify['tracks'];
         var itemsInAllTracks = allTracks['items'];
-        //console.log(itemsInAllTracks.length);
-        //console.log(itemsInAllTracks);
+
         for(var i = 0; i < itemsInAllTracks.length; ++i) {
             var data = itemsInAllTracks[i];
             var albumData = data['album'];
@@ -86,7 +84,7 @@ module.exports = function(app) {
                     uri : uri,
                     artistname : artist,
                     previewURL : previewURL,
-                    image : imagesList[0]['url'],
+                    image : imagesList[0]['url']
             });
         }
         return results;

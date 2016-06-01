@@ -38,7 +38,6 @@
             SpotifyService.findTracks(query)
                 .then(renderResults, renderFailure);
         }
-
         function renderResults(response){
             console.log(response.data);
             vm.searchResult = response.data;
@@ -48,6 +47,5 @@
         function renderFailure(){
             console.log("Failed to fetch results");
         }
-
     }
 })();
