@@ -5,6 +5,10 @@ var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app, userModel){
 
+    passport.use('project', new LocalStrategy(projectLocalStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
     app.post  ('/api/project/logout',   projLogout);
@@ -13,7 +17,7 @@ module.exports = function (app, userModel){
     app.get("/api/project/user/:id",findUserById);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
-
+    app.post  ("/api/project/login",    passport.authenticate('project'), projLogin);
 
     //user favorite
 
@@ -30,9 +34,7 @@ module.exports = function (app, userModel){
     app.put("/api/project/notify", undoNotify);
 
 
-    passport.use('project', new LocalStrategy(projectLocalStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+
 
     function projectLocalStrategy(username, password, done) {
         console.log(username);
@@ -374,8 +376,10 @@ module.exports = function (app, userModel){
     }
 
     function findUser(req,res){
+        console.log("In findUser server");
         var userName = req.query.username;
         var password = req.query.password;
+        console.log(userName + " " + password);
         var user = null;
         if (userName != null && password != null){
             var credentials = {username : userName, password : password};

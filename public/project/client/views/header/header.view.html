@@ -1,5 +1,5 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller = "HeaderController as model">
+        <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -21,8 +21,7 @@
                 <li ng-class="{'active': $location.path() == '/register'}" ng-hide="currentUser"><a href="#/register">Register</a></li>
                 <li ng-class="{'active': $location.path() == '/login'}" ng-hide="currentUser"><a href="#/login">Login</a></li>
                 <li ng-class="{'active': $location.path() == '/profile'}" ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser" ng-click="logout()"><a href='#/'>Logout</a></li>
-                <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url()=='/admin'}">   <a href="#/admin">Admin</a></li>
+                <li ng-show="currentUser" ng-click="model.logout()"><a href='#/'>Logout</a></li>
             </ul>
         </div>
     </div>

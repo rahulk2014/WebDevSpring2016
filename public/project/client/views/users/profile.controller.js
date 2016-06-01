@@ -6,36 +6,36 @@
 
     angular
         .module("SongsForYouApp")
-        .controller("ProfileController", profileControllerFunction);
+        .controller("ProfileController", ProfileController);
 
-    function profileControllerFunction($scope, $rootScope, UserService) {
-        $scope.profile = $rootScope.currentUser;
+    function ProfileController ( $rootScope, UserService) {
+        var vm = this;
+        vm.update= update;
+
+        function init() {
+            vm.user = UserService.getUser();
+        }
+        init();
 
 
-        $scope.update = function update(profile) {
-            console.log("In update");
-            if(!profile.username || profile.username == null){
-                $scope.error = "Please enter username";
-                return;
-            }
-            if(!profile.firstName || profile.firstName == null){
-                $scope.error = "Please enter firstName";
-                return;
-            }
-            if(!profile.lastName || profile.lastName == null){
-                $scope.error = "Please enter lastName";
-                return;
-            }
-            UserService.updateUser($scope.profile._id, profile)
-                .then(function(response){
-                    if(response.data) {
-                        $scope.message = "Successfully Updated";
-                        UserService.setCurrentUser(response.data);
+        function update(user){
+
+            UserService.updateUser( $rootScope.currentUser._id, user)
+                .then(
+                    function (updatedUser){
+                        if (updatedUser.data != null) {
+                            UserService.setUser(updatedUser.data);
+                            vm.message = "User updated successfully";
+                        }
+                        else
+                        {
+                            vm.message = "Cannot update User";
+                        }
+                    },
+                    function (error){
+                        vm.message = "Cannot update User";
                     }
-                    else {
-                        $scope.error = "Unable to update";
-                    }
-                });
-        };
+                );
+        }
     }
 })();

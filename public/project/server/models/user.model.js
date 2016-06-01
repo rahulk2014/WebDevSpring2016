@@ -346,17 +346,8 @@ module.exports = function(db,mongoose,RestaurantModel,FollowModel) {
             if(err){
                 deferred.reject(err);
             }else{
-                FavoriteModel.create({userId: newUser._id, resIds: []},
-                    function(err, userFav) {
-                        if (err) {
-                            deferred.reject(err);
-                        } else {
-                            //finalResult.bookFav = bookFavObj;
-                            console.log("USER MODEL CREATE END");
-                            deferred.resolve(newUser);
-                        }
-                    }
-                );
+                console.log("USER MODEL CREATE END");
+                deferred.resolve(newUser);
             }
         });
         return deferred.promise;
@@ -371,16 +362,23 @@ module.exports = function(db,mongoose,RestaurantModel,FollowModel) {
                 deferred.reject(err);
             }
             else{
+                //username: String,
+                //    password: String,
+                //    firstName: String,
+                //    lastName: String,
+                //    email: String,
+                //    phones: String,
+                //    review: [ReviewSchema],
+                //    playlists:[Playlist],
+                //    friends : [String]
                 userFound.username = user.username;
                 userFound.firstName = user.firstName;
                 userFound.lastName = user.lastName;
                 userFound.password = user.password;
                 userFound.email = user.email;
-                userFound.phones = user.phones;
                 userFound.review = user.review;
-                userFound.likes = user.likes;
+                userFound.playlists = user.playlists;
                 userFound.friends = user.friends;
-                userFound.type = user.type;
                 userFound.save(function(err,userUpdated){
                     if(err){
                         deferred.reject(err);
