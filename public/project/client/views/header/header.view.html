@@ -18,10 +18,21 @@
                     <a href="#/search/{{model.query}}" type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></a>
                     </div>
                 </form>
-                <li ng-class="{'active': $location.path() == '/register'}" ng-hide="currentUser"><a href="#/register">Register</a></li>
-                <li ng-class="{'active': $location.path() == '/login'}" ng-hide="currentUser"><a href="#/login">Login</a></li>
-                <li ng-class="{'active': $location.path() == '/profile'}" ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser" ng-click="model.logout()"><a href='#/'>Logout</a></li>
+                <li ng-class="{'active': $location.path() == '/register'}" ng-hide="currentUser">
+                    <a href="#/register">Register</a>
+                </li>
+                <li ng-class="{'active': $location.path() == '/login'}" ng-hide="currentUser">
+                    <a href="#/login">Login</a>
+                </li>
+                <li ng-class="{'active': $location.path() == '/profile'}" ng-show="currentUser">
+                    <a href="#/profile">{{currentUser.username}}</a>
+                </li>
+                <li ng-show="currentUser" ng-click="model.logout()">
+                    <a href='#/'>Logout</a>
+                </li>
+                <li ng-show = "currentUser" ng-class="{'active': model.$location.url() == '/find'}">
+                    <a href="#/find">Find Users</a>
+                </li>
             </ul>
         </div>
     </div>

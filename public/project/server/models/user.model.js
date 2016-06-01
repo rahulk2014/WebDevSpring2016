@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function(db,mongoose,RestaurantModel,FollowModel) {
+module.exports = function(db,mongoose,FollowModel) {
 
     var UserSchema = require("./user.schema.server.js")(mongoose);
     var UserModel = mongoose.model('songUser',UserSchema);
@@ -56,42 +56,42 @@ module.exports = function(db,mongoose,RestaurantModel,FollowModel) {
         return deferred.promise;
     }
 
-    function updateFollower(uid){
-        var deferred = q.defer();
-        console.log("Inside Model update");
-        console.log(uid);
-        FollowModel.update({followerId:uid}, {notify: "yes"}, {multi: true},
-            function(err, fuser) {
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    console.log("updated ");
-                    deferred.resolve(fuser);
-                }
-
-            }
-        );
-        return deferred.promise;
-    }
-
-    function undoNotify(uName,fName){
-        var deferred = q.defer();
-        console.log("Inside Model undoNotify");
-        console.log(uName);
-        console.log(fName);
-        FollowModel.update({userName : uName ,followerName : fName}, {notify: "no"},
-            function(err, fuser) {
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    console.log("updated ");
-                    deferred.resolve(fuser);
-                }
-
-            }
-        );
-        return deferred.promise;
-    }
+    //function updateFollower(uid){
+    //    var deferred = q.defer();
+    //    console.log("Inside Model update");
+    //    console.log(uid);
+    //    FollowModel.update({followerId:uid}, {notify: "yes"}, {multi: true},
+    //        function(err, fuser) {
+    //            if(err){
+    //                deferred.reject(err);
+    //            }else{
+    //                console.log("updated ");
+    //                deferred.resolve(fuser);
+    //            }
+    //
+    //        }
+    //    );
+    //    return deferred.promise;
+    //}
+    //
+    //function undoNotify(uName,fName){
+    //    var deferred = q.defer();
+    //    console.log("Inside Model undoNotify");
+    //    console.log(uName);
+    //    console.log(fName);
+    //    FollowModel.update({userName : uName ,followerName : fName}, {notify: "no"},
+    //        function(err, fuser) {
+    //            if(err){
+    //                deferred.reject(err);
+    //            }else{
+    //                console.log("updated ");
+    //                deferred.resolve(fuser);
+    //            }
+    //
+    //        }
+    //    );
+    //    return deferred.promise;
+    //}
 
     function removeFriend(userId,fId) {
         var deferred = q.defer();

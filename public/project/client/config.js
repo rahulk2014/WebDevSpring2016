@@ -9,7 +9,11 @@
             $routeProvider.
                 when("/",{
                     templateUrl : "views/home/home.view.html",
-                    controller : "HomeController"
+                    controller : "HomeController",
+                    controllerAs: "model",
+                    resolve: {
+                        checkCurrentUser: checkCurrentUser
+                    }
                 })
                 .when("/admin",{
                     templateUrl:"views/admin/admin.view.html",
@@ -29,6 +33,22 @@
                     templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController",
                     controllerAs : "model",
+                    resolve: {
+                        checkLoggedIn: checkLoggedin
+                    }
+                })
+                .when("/find", {
+                    templateUrl: "views/users/find.view.html",
+                    controller: "FindUserController",
+                    controllerAs: "model",
+                    resolve: {
+                        checkLoggedIn: checkLoggedin
+                    }
+                })
+                .when("/api/profile/:username/profile", {
+                    templateUrl: "views/users/friend.profile.view.html",
+                    controller: "FriendProfileController",
+                    controllerAs: "model",
                     resolve: {
                         checkLoggedIn: checkLoggedin
                     }
@@ -67,6 +87,24 @@
                 deferred.reject();
                 $location.url('/login');
             }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkCurrentUser = function($q, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.currentUser = user;
+            }
+            deferred.resolve();
         });
 
         return deferred.promise;
