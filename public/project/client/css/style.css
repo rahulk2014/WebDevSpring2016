@@ -98,3 +98,24 @@ video#bcgVid {
     width : 300px;
     height : 200px;
 }
+
+.song-detail-img {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.iframe-class {
+    padding-top: 10px;
+
+}
+
+.iframe-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+iframe, object, embed {
+    max-width: 100%;
+}

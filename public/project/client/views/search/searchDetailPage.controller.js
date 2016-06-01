@@ -8,7 +8,40 @@
         .module("SongsForYouApp")
         .controller("SearchDetailController", SearchDetailController);
 
-        function SearchDetailController($routeParams) {
-            console.log("In SearchDetail Controller")
+        function SearchDetailController($routeParams, SpotifyService) {
+            console.log("In SearchDetail Controller");
+            var vm = this;
+            vm.searchSong = searchSong;
+            vm.searchDetailResult = null;
+
+            var songId = $routeParams.songId;
+            console.log(songId);
+            function init() {
+            }
+            init();
+
+            if(songId != null) {
+                if(songId == "")
+                    return;
+                searchSong(songId);
+            }
+
+            /**
+             * Function that returns results from the server.
+             * @param songId
+             */
+            function searchSong(songId) {
+                SpotifyService.findSong(songId)
+                    .then(renderResults, renderFailure);
+            }
+            function renderResults(response) {
+                console.log("Inside renderResults");
+                vm.searchDetailResult = response.data;
+                //console.log(vm.searchDetailResult.spotify_uri);
+                console.log(vm.searchDetailResult.imageURL);
+            }
+            function renderFailure(){
+                console.log("Failed to fetch results.");
+            }
         }
 })();

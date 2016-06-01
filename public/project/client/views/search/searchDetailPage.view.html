@@ -3,5 +3,43 @@
         <source src="../../../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
         <source src="../../../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
     </video>
-    <h2 style="color : white;">Search Results for</h2>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 iframe-class">
+            <iframe  src="https://embed.spotify.com/?uri=spotify:track:5Xkfw6B1Cs4jnpKOh0GULs"
+                    class="iframe-content"
+                     frameborder="0" allowtransparency="true">
+            </iframe>
+            <img class="img img-responsive song-detail-img" ng-src="{{model.searchDetailResult.imageURL}}">
+        </div>
+        <!--var songDetailResult = {-->
+        <!--artistName : artistName,-->
+        <!--artistURI : artistURI,-->
+        <!--spotify_uri : spotify_uri,-->
+        <!--previewURL : previewURL,-->
+        <!--popularity : popularity,-->
+        <!--trackName : trackName,-->
+        <!--duration_ms : duration_ms-->
+        <!--};-->
+        <div class="col-md-6 col-sm-6 col-lg-6">
+                <h4 style="color:white;position: relative;">Song Preview</h4>
+                <audio controls>
+                    <source src="{{model.searchDetailResult.previewURL}}"
+                            type='audio/mp3'>
+                    <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
+                    <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"
+                            type='audio/ogg; codecs=vorbis'>
+                    <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+                    <p>Your user agent does not support the HTML5 Audio element.</p>
+                </audio>
+                <hr>
+                <br/><br/><br/>
+                <div>
+                    <h4>TRACK NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         : {{model.searchDetailResult.trackName}}</h4>
+                    <h4>ARTIST NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         : {{model.searchDetailResult.artistName}}</h4>
+                    <h4>TRACK POPULARITY&nbsp;    : {{model.searchDetailResult.popularity}}</h4>
+                    <h4>TRACK DURATION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      : {{model.searchDetailResult.duration_ms}} sec</h4>
+                </div>
+                <hr>
+        </div>
+    </div>
 </div>

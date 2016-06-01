@@ -27,7 +27,7 @@
                     templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController"
                 })
-                .when("/searchDetail", {
+                .when("/searchDetail/:songId", {
                     templateUrl: "views/search/searchDetailPage.view.html",
                     controller: "SearchDetailController",
                     controllerAs : "model"
