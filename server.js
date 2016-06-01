@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 
-var w = 'webdev2016	';
+var w = 'webdev2016';
 //For localhost
 var connString = 'mongodb://127.0.0.1:27017/' + w;
 //For openshift

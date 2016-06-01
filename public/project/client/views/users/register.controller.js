@@ -1,56 +1,51 @@
 /**
  * Created by rahul on 2/23/16.
  */
-"user strict";
+"use strict";
 
 (function(){
 
     angular
         .module("SongsForYouApp")
-        .controller("RegisterController", registerController);
+        .controller("RegisterController", RegisterController);
 
-    function registerController($location, $scope, UserService) {
+    function RegisterController($scope, $location, UserService ) {
 
-        $scope.register = function(user) {
+        var vm = this;
 
-            if (user == null) {
-                $scope.error = "Please fill in the required fields";
-                return;
-            }
-            if (!user.username) {
-                $scope.error = "Please provide a username";
-                return;
-            }
-            if (!user.password || !user.confirmPassword) {
-                $scope.error = "Please provide a password";
-                return;
-            }
-            if (user.password != user.confirmPassword) {
-                $scope.error = "Passwords must match";
-                return;
-            }
-            UserService.findUserByUsername(user.username)
-                .then(function(userFound){
-                    if(userFound.data == null) {
-                        UserService.createUser(user)
-                            .then(function(users){
-                                UserService.findUserByUsername(user.username)
-                                    .then(function(userFoundAgain){
-                                        UserService.setCurrentUser(userFoundAgain.data);
-                                        $location.url('/profile');
-                                    }, function(error){
-                                        $scope.error = "Unable to find existing user name";
-                                    })
-                            }, function(error) {
-                                $scope.error = "Unable to create a new user";
-                            });
-                    } else {
-                        $scope.error = "User already exists";
+        vm.message = null;
+
+        vm.register = register;
+
+        function init() {
+
+        }
+        init();
+
+
+        function register(user){
+
+            var userName = user.username;
+
+            UserService.findUserByUsername(userName)
+                .then(function (userPresent){
+                        if(userPresent.data == null){
+                            UserService.createUser(user)
+                                .then(function (user) {
+                                        UserService.setUser(user.data);
+                                        $location.url("/profile");
+                                    },
+                                    function (err){
+                                        vm.message = "Cannot register";
+                                    });
+                        }else{
+                            vm.message = "Username Already Exists";
+                        }
+                    },
+                    function(err){
+                        vm.message = "Username Already Exists";
                     }
-                }, function(error) {
-                    console.log("Unable to fetch username");
-                });
-
+                );
         }
     }
 })();

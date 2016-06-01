@@ -1,39 +1,65 @@
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="RegisterController">
-            <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
-            <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
 
-            <h1 class="page-header">Register</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">Username :</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="username" placeholder="UserName" ng-model="user.username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-xs-6 col-sm-3 control-label">Password :</label>
-                    <div class=" col-sm-9">
-                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
-                    </div>
-                </div>
+    <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
+    <h1 class="page-header">Register</h1>
 
-                <div class="form-group">
-                    <label for="verifyPassword" class="col-xs-6 col-sm-3 control-label">Verify Password :</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="verifyPassword" placeholder="Password" ng-model="user.confirmPassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-xs-6 col-sm-3 control-label">Email :</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-color" ng-click="register(user)">Register</button>
-                    </div>
-                </div>
-            </form>
+    <form class="form-horizontal" name="registrationForm" novalidate>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">*Username:</label>
+            <div class="col-sm-10">
+                <input ng-model = "model.user.username" type="text" class="form-control" id="username"
+                       placeholder="Username" name = "username"  required autofocus>
+                <!--ng-class="{invalid-field: registrationForm.username.$dirty  registrationForm.username.$error.required}">-->
+                <span class="error errorMsg"
+                      ng-show="registrationForm.username.$dirty && registrationForm.username.$error.required">
+										* Username is required. </span>
+            </div>
         </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">*Password:</label>
+            <div class="col-sm-10">
+                <input ng-model = "model.user.password" type="password" class="form-control" id="password" name = "password"
+                       placeholder="Password" match = "user.verifyPassword" required>
+                <!--ng-class="{invalid-field: registrationForm.password.$dirty registrationForm.password.$error.required}">-->
+                <span class="error errorMsg"
+                      ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">
+								* Password is required. </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="verifyPassword" class="col-sm-2 control-label">Verify Password:</label>
+            <div class="col-sm-10">
+                <input ng-model = "model.user.verifyPassword" type="password" class="form-control" id="verifyPassword"
+                       name = "verifyPassword" placeholder="Password" required>
+                <span class="error errorMsg" ng-show="registrationForm.verifyPassword.$dirty && registrationForm.verifyPassword.$error.required">
+								* Confirm Password is required.
+                </span>
+                <div  ng-show="(registrationForm.password.$dirty && registrationForm.verifyPassword.$dirty) &&
+                               (user.password != user.verifyPassword)">
+                    <span class="error errorMsg">Passwords don't match.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-10">
+                <input ng-model = "model.user.email" type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <span  ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
+                    <span class="error errorMsg" ng-show="registrationForm.email.$error.required" >Email is required.</span>
+                    <span class="error errorMsg"  ng-show="registrationForm.email.$error.email"> Not valid email!</span>
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+
+                <a class="btn btn-primary btn-lg btn-block" role="button" ng-disabled="registrationForm.$invalid"
+                   ng-click = "model.register(model.user)">Register</a>
+            </div>
+        </div>
+    </form>
+</div>
