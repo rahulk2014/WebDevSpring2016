@@ -28,6 +28,7 @@ module.exports = function(db,mongoose,FollowModel) {
         getPlaylists : getPlaylists,
         deleteplaylist : deleteplaylist,
         addToPlaylist : addToPlaylist,
+        deleteSong : deleteSong,
 
         //follow
         addFriend:addFriend,
@@ -403,6 +404,27 @@ module.exports = function(db,mongoose,FollowModel) {
                     }
                 });
             });
+        return deferred.promise;
+    }
+
+    function deleteSong(playlistId, songId, userId) {
+        var deferred = q.defer();
+        console.log("In deleteplaylist");
+        console.log(playlistId);
+        UserModel.findById(userId).then(
+            function(user) {
+                user.playlists.id(playlistId).songs.id(songId).remove();
+                user.save(function(err, user){
+                    if(err) {
+                        console.log("Error");
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(user.playlists);
+                        console.log("Success in deleteplaylist");
+                    }
+                });
+            });
+
         return deferred.promise;
     }
 

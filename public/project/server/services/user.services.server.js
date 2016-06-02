@@ -13,6 +13,7 @@ module.exports = function (app, userModel){
     app.get("/api/project/playlist/:userId", getPlaylists);
     app.delete("/api/project/playlist/:playlistId/user/:userId", deleteplaylist);
     app.put("/api/project/song/user/:userId/playlist/:playlistId",addToPlaylist);
+    app.delete("/api/project/playlist/:playlistId/song/:songId/user/:userId", deleteSong);
 
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
@@ -214,6 +215,17 @@ module.exports = function (app, userModel){
 
     function deleteplaylist(req,res) {
         userModel.deleteplaylist(req.params.playlistId,req.params.userId)
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function ( err ) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function deleteSong(req, res) {
+        userModel.deleteSong(req.params.playlistId, req.params.songId, req.params.userId)
             .then(
                 function (users) {
                     res.json(users);

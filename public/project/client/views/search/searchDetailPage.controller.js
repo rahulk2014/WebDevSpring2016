@@ -14,12 +14,11 @@
             var vm = this;
             vm.searchSong = searchSong;
             vm.addToPlaylist = addToPlaylist;
-
+            vm.close = close;
             vm.searchDetailResult = null;
             vm.user = UserService.getUser();
-            console.log("HEY " + vm.user.playlists[0].playlistName);
             var songId = $routeParams.songId;
-            console.log(songId);
+
             function init() {
             }
             init();
@@ -44,6 +43,8 @@
                 UserService.addToPlaylist(vm.user._id, newSong, playlistId)
                     .then(function(user){
                         console.log("Song added succesfully");
+                        vm.successMessage = "Added to playlist";
+
                     }, function(err){
                         console.log("Unable to add song.");
                     })
@@ -69,6 +70,10 @@
             }
             function renderFailure(){
                 console.log("Failed to fetch results.");
+            }
+
+            function close() {
+                vm.successMessage = null;
             }
         }
 })();

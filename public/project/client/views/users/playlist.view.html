@@ -7,7 +7,6 @@
     <ul class="nav nav-tabs">
         <li role="presentation"><a href="#/profile">Profile</a></li>
         <li role="presentation" class="active"><a href="#/playlist">PlayLists</a></li>
-        <li role="presentation"><a href="#/review">Your Review's</a></li>
     </ul>
     <h1 class="page-header"></h1>
 
@@ -25,9 +24,14 @@
                             </a>
                         </h2>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xs-6 " >
+                    <div class="col-md-6 col-lg-6 col-xs-6 ">
                         <div class="row" ng-repeat="song in result.songs" >
-                            <h4>{{song.trackName}}</h4>
+                            <div class="col-md-12">
+                                <label>{{song.songname}}</label>
+                                <a ng-click="model.deleteSong(result._id,song._id)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
