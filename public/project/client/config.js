@@ -37,6 +37,14 @@
                         checkLoggedIn: checkLoggedin
                     }
                 })
+                .when("/playlist", {
+                    templateUrl: "views/users/playlist.view.html",
+                    controller: "PlaylistController",
+                    controllerAs : "model",
+                    resolve: {
+                        checkLoggedIn: checkLoggedin
+                    }
+                })
                 .when("/find", {
                     templateUrl: "views/users/find.view.html",
                     controller: "FindUserController",
@@ -61,7 +69,10 @@
                 .when("/search/:query", {
                     templateUrl: "views/search/searchPage.view.html",
                     controller: "SearchController",
-                    controllerAs : "model"
+                    controllerAs : "model",
+                    resolve: {
+                        checkCurrentUser: checkCurrentUser
+                    }
                 })
                 .otherwise({
                     redirectTo: "/"

@@ -21,10 +21,14 @@
             getCurrentUser: getCurrentUser,
             userLogin:userLogin,
 
-            //favorites
-            addUserFavorite:addUserFavorite,
-            getUserFavorites:getUserFavorites,
-            removeUserFavorite:removeUserFavorite,
+            ////favorites
+            //addUserFavorite:addUserFavorite,
+            //getUserFavorites:getUserFavorites,
+            //removeUserFavorite:removeUserFavorite,
+
+            //playlist
+            createPlaylist:createPlaylist,
+            getplaylist:getplaylist,
 
             //follow
             addFriend: addFriend,
@@ -38,6 +42,14 @@
         };
 
         return userService;
+
+        function getplaylist(userId){
+            return $http.get("/api/project/playlist/" + userId);
+        }
+
+        function createPlaylist(playlistName, user) {
+            return $http.put("/api/project/playlist/" + playlistName ,user);
+        }
 
         function addFriend(userId,userName,friend){
             return $http.post("/api/project/"+userId+"/follow/"+userName,friend,{headers: {'Content-Type': 'application/json'} });

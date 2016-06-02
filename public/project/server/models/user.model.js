@@ -18,10 +18,13 @@ module.exports = function(db,mongoose,FollowModel) {
         findUserByUsername:findUserByUsername,
         findUserByCredentials:findUserByCredentials,
 
-        //Favorites
-        addUserFavorite:addUserFavorite,
-        getUserFavorite:getUserFavorite,
-        removeUserFavorite:removeUserFavorite,
+        ////Favorites
+        //addUserFavorite:addUserFavorite,
+        //getUserFavorite:getUserFavorite,
+        //removeUserFavorite:removeUserFavorite,
+
+        //playlist
+        createPlaylist:createPlaylist,
 
         //follow
         addFriend:addFriend,
@@ -332,7 +335,45 @@ module.exports = function(db,mongoose,FollowModel) {
     }
 
 
+    function createPlaylist(playlistName, user) {
 
+        var deferred = q.defer();
+
+        UserModel.findById({_id:user._id}, function(err,userFound){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                var newPL = {
+                    playlistName : playlistName
+                };
+                userFound.playlists.push(newPL);
+                userFound.save(function(err,userUpdated){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        console.log("model user updated playlist");
+                        deferred.resolve(userUpdated);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function getPlaylists(userId) {
+        var deferred = q.defer();
+        console.log("Inside User Model");
+        UserModel.findById({_id:userId}, function(err,playlistsFound) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(playlistsFound);
+            }
+        });
+    }
 
     function createUser(user){
 

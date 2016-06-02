@@ -9,6 +9,9 @@ module.exports = function (app, userModel){
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+    app.put("/api/project/playlist/:playlistName", createPlaylist);
+    app.get("/api/project/playlist/:userId", getPlaylists);
+
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
     app.post  ('/api/project/logout',   projLogout);
@@ -250,6 +253,32 @@ module.exports = function (app, userModel){
                     console.log(JSON.stringify(doc));
                     //req.session.currentUser = doc;
                     res.json(doc);
+                },
+                function ( err ) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function getPlaylists(req,res) {
+        userModel.getPlaylists(req.params.userId)
+            .then(function(playlists){
+                    res.json(playlists);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
+    function createPlaylist(req,res){
+        var user = req.body;
+        var playlistName = req.params.playlistName;
+        console.log("In createplaylist server userservice : " + playlistName);
+        //console.log("req body in web service:"+JSON.stringify(req.body));
+        userModel.createPlaylist(playlistName,user)
+            .then(
+                function (user) {
+                    console.log("playlist created ");
+                    res.json(user);
                 },
                 function ( err ) {
                     res.status(400).send(err);
