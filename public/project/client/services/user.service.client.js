@@ -38,7 +38,6 @@
             findFriends:findFriends,
             findFollowers:findFollowers,
             removeFriend: removeFriend,
-            undoNotify:undoNotify,
 
             logout:logout
 
@@ -81,15 +80,12 @@
             return $http.delete("/api/project/"+userId+"/friend/"+fId);
         }
 
-        function undoNotify(friend){
-            return $http.put("/api/project/notify", friend);
-        }
-
         function userLogin(user){
             return $http.post("/api/project/login", user , {headers: {'Content-Type': 'application/json'} });
         }
 
         function findUserByCredentials(username,password) {
+            console.log("Password = " + password);
             return $http.get("/api/project/user?username="+username+"&password="+password);
         }
 

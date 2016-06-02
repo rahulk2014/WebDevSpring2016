@@ -34,23 +34,19 @@ module.exports = function (app, userModel){
     app.delete("/api/project/:userId/friend/:fId", removeFriend);
 
 
-
-
     function projectLocalStrategy(username, password, done) {
         console.log(username);
         console.log(password);
         userModel
-            .findUserByUsername(username)
+            .findUserByCredentials({username : username,password : password})
             .then(
                 function (user) {
                     console.log("Inside projeect strategy");
                     console.log(user);
                     console.log(password);
                     if (user) {
-                        console.log("bcrypt passes");
                         return done(null, user);
                     }else{
-                        console.log("bcrypt fails");
                         return done(null, false);
                     }
 

@@ -338,10 +338,8 @@ module.exports = function(db,mongoose,FollowModel) {
     function findUserByCredentials(credentials){
         var deferred = q.defer();
 
-        // find one retrieves one document
         UserModel.findOne(
 
-            // first argument is predicate
             { username: credentials.username,
                 password: credentials.password },
 
