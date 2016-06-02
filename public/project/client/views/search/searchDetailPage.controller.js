@@ -34,10 +34,9 @@
                 console.log("SEARCH DETAIL " + playlistId);
                 console.log(searchDetailResult);
                 var newSong = {
-                    songid : searchDetailResult.songid,
+                    songid : searchDetailResult.songId,
                     songname : searchDetailResult.trackName,
-                    artistname : searchDetailResult.artistname,
-                    previewURL : searchDetailResult.previewURL
+                    artistname : searchDetailResult.artistName,
                 }
                 UserService.addToPlaylist(vm.user._id, newSong, playlistId)
                     .then(function(user){

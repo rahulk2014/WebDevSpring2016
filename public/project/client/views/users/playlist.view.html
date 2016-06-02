@@ -11,6 +11,7 @@
     <h1 class="page-header"></h1>
 
     <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.playlists.length <= 0" class="alert alert-success" role="alert">You do not have any playlists yet! Click on (+) in header to create one.</div>
     <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
     <div class="container-fluid">
@@ -27,7 +28,7 @@
                     <div class="col-md-6 col-lg-6 col-xs-6 ">
                         <div class="row" ng-repeat="song in result.songs" >
                             <div class="col-md-12">
-                                <label>{{song.songname}}</label>
+                                <a href="#/searchDetail/{{song.songid}}">{{song.songname}}</a>
                                 <a ng-click="model.deleteSong(result._id,song._id)">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>

@@ -152,10 +152,10 @@ module.exports = function(db,mongoose,FollowModel) {
         UserModel.findById(userId).then(
             function(user) {
                 var playlistToUpdate = user.playlists.id(playlistId);
-                console.log(playlistToUpdate);
+                console.log(newSong);
                 playlistToUpdate.playlistName = playlistToUpdate.playlistName;
                 playlistToUpdate.songs.push(newSong);
-                console.log(playlistToUpdate);
+                console.log(playlistToUpdate.songs[0]);
                 user.save(function(err, user){
                     if(err) {
                         console.log("HERE LIES THE ERROR");
