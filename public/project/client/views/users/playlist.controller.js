@@ -15,7 +15,6 @@
         function init() {
             vm.user = UserService.getUser();
             vm.playlists = vm.user.playlists;
-            console.log(vm.playlists[0].songs);
         }
         init();
 
