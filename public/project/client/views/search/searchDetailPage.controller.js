@@ -10,7 +10,6 @@
         function SearchDetailController($routeParams, $sce, SpotifyService, UserService) {
             console.log("In SearchDetail Controller");
 
-
             var vm = this;
             vm.searchSong = searchSong;
             vm.addToPlaylist = addToPlaylist;
@@ -31,7 +30,7 @@
 
 
             function addToPlaylist(playlistId,searchDetailResult) {
-                //console.log("YO " + playlistName);
+
                 console.log("SEARCH DETAIL " + playlistId);
                 console.log(searchDetailResult);
                 var newSong = {
@@ -64,9 +63,7 @@
                 vm.searchDetailResult = response.data;
                 vm.searchDetailResult.spotify_uri = "https://embed.spotify.com/?uri=" + vm.searchDetailResult.spotify_uri;
                 vm.searchDetailResult.spotify_uri = $sce.trustAsResourceUrl(vm.searchDetailResult.spotify_uri);
-                //vm.searchDetailResult.previewURL = vm.searchDetailResult.previewURL + ".mp3";
                 vm.searchDetailResult.previewURL = $sce.trustAsResourceUrl(vm.searchDetailResult.previewURL);
-                //console.log(vm.searchDetailResult.spotify_uri);
             }
             function renderFailure(){
                 console.log("Failed to fetch results.");

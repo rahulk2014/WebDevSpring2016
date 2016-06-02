@@ -25,11 +25,6 @@ module.exports = function (app, userModel){
     app.delete("/api/project/user/:id", deleteUser);
     app.post  ("/api/project/login",    passport.authenticate('project'), projLogin);
 
-    //user favorite
-
-    app.post("/api/project/user/fav/:userId",addUserFavorite);
-    app.get("/api/project/user/fav/:userId",getUserFavorite);
-    app.delete("/api/project/user/:userId/fav/:resId",removeUserFavorite);
 
     //user follow
 
@@ -37,7 +32,6 @@ module.exports = function (app, userModel){
     app.get("/api/project/find/friends/:userId", findFriends);
     app.get("/api/project/find/followers/:userId", findFollowers);
     app.delete("/api/project/:userId/friend/:fId", removeFriend);
-    app.put("/api/project/notify", undoNotify);
 
 
 
@@ -187,21 +181,6 @@ module.exports = function (app, userModel){
                 });
     }
 
-    function undoNotify(req,res){
-        var friend = req.body;
-        console.log(req.body);
-
-        userModel.undoNotify(friend.userName, friend.followerName)
-            .then(function (doc) {
-                    console.log("Inside user web service");
-                    console.log(JSON.stringify(doc));
-                    res.json(doc);
-                },
-                function ( err ) {
-                    res.status(400).send(err);
-                });
-    }
-
     function addToPlaylist(req,res) {
         var newSong = req.body;
         userModel.addToPlaylist(req.params.userId,req.params.playlistId,newSong)
@@ -321,17 +300,6 @@ module.exports = function (app, userModel){
                 });
     }
 
-    //function updateUser(req,res){
-    //    userModel.updateUser(req.body,req.params.id)
-    //        .then( function(updatedUser){
-    //                res.json(updatedUser);
-    //            },
-    //            function(err){
-    //                res.status(400).send(err);
-    //            }
-    //        );
-    //}
-
     function updateUser(req,res){
         var newUser = req.body;
 
@@ -404,42 +372,6 @@ module.exports = function (app, userModel){
                 });
     }
 
-
-    function addUserFavorite(req, res){
-
-        userModel.addUserFavorite(req.params.userId, req.body)
-            .then(function(userFav){
-                    res.json(userFav);
-                },
-                function(err){
-                    res.status(400).send(err);
-                });
-    }
-
-    function getUserFavorite(req, res){
-        console.log(req.params.userId);
-        userModel.getUserFavorite(req.params.userId)
-            .then(function(userFavs){
-                    res.json(userFavs);
-                },
-                function(err){
-                    res.status(400).send(err);
-                });
-    }
-
-    function removeUserFavorite(req,res){
-
-        userModel.removeUserFavorite(req.params.userId,req.params.resId)
-            .then(function(userFavs){
-                    console.log("user fav deleted");
-                    console.log(userFavs);
-                    res.json(userFavs);
-                },
-                function(err){
-                    res.status(400).send(err);
-                });
-    }
-
     function findUser(req,res){
         console.log("In findUser server");
         var userName = req.query.username;
@@ -484,10 +416,6 @@ module.exports = function (app, userModel){
         }
     }
 
-    //function loggedin(req,res){
-    //    res.json(req.session.currentUser);
-    //}
-    //
     function logout(req, res) {
         //req.session.destroy();
         res.send(200);

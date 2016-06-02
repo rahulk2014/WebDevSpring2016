@@ -12,9 +12,7 @@
     function RegisterController($scope, $location, UserService ) {
 
         var vm = this;
-
         vm.message = null;
-
         vm.register = register;
 
         function init() {

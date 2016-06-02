@@ -12,14 +12,12 @@
         vm.profileUserName = $routeParams.username;
 
         function init() {
-
             UserService.findUserByUsername(vm.profileUserName)
                 .then(function(user){
                     vm.user = user.data;
                 }, function (err){
 
                 });
-
         }
         init();
     }

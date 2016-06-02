@@ -17,9 +17,7 @@
 
         var query = $routeParams.query;
 
-
         function init() {
-
         }
 
         init();

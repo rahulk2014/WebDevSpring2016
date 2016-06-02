@@ -5,10 +5,6 @@ module.exports = function(db,mongoose,FollowModel) {
     var UserSchema = require("./user.schema.server.js")(mongoose);
     var UserModel = mongoose.model('songUser',UserSchema);
 
-    //var FavoriteSchema = require("./favorites.schema.server.js")(mongoose);
-    //var FavoriteModel = mongoose.model('favorite',FavoriteSchema);
-
-
     var api = {
         createUser:createUser,
         updateUser:updateUser,
@@ -17,11 +13,6 @@ module.exports = function(db,mongoose,FollowModel) {
         findUserById:findUserById,
         findUserByUsername:findUserByUsername,
         findUserByCredentials:findUserByCredentials,
-
-        ////Favorites
-        //addUserFavorite:addUserFavorite,
-        //getUserFavorite:getUserFavorite,
-        //removeUserFavorite:removeUserFavorite,
 
         //playlist
         createPlaylist:createPlaylist,
@@ -35,8 +26,6 @@ module.exports = function(db,mongoose,FollowModel) {
         findFriends:findFriends,
         findFollowers:findFollowers,
         removeFriend:removeFriend
-        //updateFollower: updateFollower,
-        //undoNotify:undoNotify
     };
 
     return api;
@@ -63,43 +52,6 @@ module.exports = function(db,mongoose,FollowModel) {
         return deferred.promise;
     }
 
-    //function updateFollower(uid){
-    //    var deferred = q.defer();
-    //    console.log("Inside Model update");
-    //    console.log(uid);
-    //    FollowModel.update({followerId:uid}, {notify: "yes"}, {multi: true},
-    //        function(err, fuser) {
-    //            if(err){
-    //                deferred.reject(err);
-    //            }else{
-    //                console.log("updated ");
-    //                deferred.resolve(fuser);
-    //            }
-    //
-    //        }
-    //    );
-    //    return deferred.promise;
-    //}
-    //
-    //function undoNotify(uName,fName){
-    //    var deferred = q.defer();
-    //    console.log("Inside Model undoNotify");
-    //    console.log(uName);
-    //    console.log(fName);
-    //    FollowModel.update({userName : uName ,followerName : fName}, {notify: "no"},
-    //        function(err, fuser) {
-    //            if(err){
-    //                deferred.reject(err);
-    //            }else{
-    //                console.log("updated ");
-    //                deferred.resolve(fuser);
-    //            }
-    //
-    //        }
-    //    );
-    //    return deferred.promise;
-    //}
-
     function removeFriend(userId,fId) {
         var deferred = q.defer();
         console.log(userId);
@@ -118,27 +70,6 @@ module.exports = function(db,mongoose,FollowModel) {
 
         return deferred.promise;
 
-        //FollowModel.findOne({userId: userId ,followerId: fId},
-        //    function(err, userFollower){
-        //        if(err){
-        //            deferred.reject(err);
-        //        }
-        //        else {
-        //
-        //            userFollower.resIds.splice(userFollower.resIds.indexOf(resId), 1);
-        //            userFav.save(function (err, userFavObj) {
-        //                if (err) {
-        //
-        //                    deferred.reject(err);
-        //                }
-        //                else {
-        //                    removeHotel(resId);
-        //                    deferred.resolve(userFavObj);
-        //                }
-        //            });
-        //        }
-        //    });
-        //return deferred.promise;
     }
 
     function findFriends(uid){
@@ -170,174 +101,6 @@ module.exports = function(db,mongoose,FollowModel) {
         });
         return deferred.promise;
     }
-
-    function addUserFavorite(userId,restaurant){
-        var deferred = q.defer();
-        console.log("Inside Model");
-        console.log(userId);
-        FavoriteModel.findOne({userId: userId},
-            function(err, userFav){
-                if(err){
-                    deferred.reject(err);
-                }
-                else{
-                    console.log(JSON.stringify(userFav));
-                    var resId = restaurant.id;
-
-                    if(userFav != null && userFav.resIds.indexOf(resId) == -1 ) {
-
-                        userFav.resIds.push(resId);
-                        userFav.save(function (err, userFavObj) {
-                            if (err) {
-                                deferred.reject(err);
-                            } else {
-
-                                storeHotel(restaurant);
-                                deferred.resolve(userFavObj);
-                            }
-                        })
-                    }
-                    else{
-                        deferred.resolve(null);
-                    }
-
-                }
-            });
-        return deferred.promise;
-    }
-
-    function getUserFavorite(userId){
-        var deferred = q.defer();
-        FavoriteModel.findOne({userId: userId},
-            function(err, userFav){
-                if(err){
-                    deferred.reject(err);
-                }
-                else{
-                    if(userFav === null || userFav.resIds == 0 ){
-                        deferred.resolve(null);
-                    }else{
-                        console.log("user found");
-                        console.log(userFav);
-                        var finalUserFav = {};
-                        RestaurantModel.find({ resId : { $in : userFav.resIds }},
-                            function(err, favRes){
-                                if(err){
-                                    deferred.reject(err);
-                                }
-                                else
-                                {
-                                    console.log("favRes");
-                                    console.log(favRes);
-                                    finalUserFav = {
-                                        userId : userFav.userId,
-                                        resIds : userFav.resIds,
-                                        resFav : favRes
-                                    };
-                                    deferred.resolve(finalUserFav);
-                                }
-                            });
-                    }
-
-                }
-            });
-        return deferred.promise;
-    }
-
-
-    function removeUserFavorite(userId, resId){
-        var deferred = q.defer();
-
-        FavoriteModel.findOne({userId: userId},
-            function(err, userFav){
-                if(err){
-                    deferred.reject(err);
-                }
-                else {
-
-                    userFav.resIds.splice(userFav.resIds.indexOf(resId), 1);
-                    userFav.save(function (err, userFavObj) {
-                        if (err) {
-
-                            deferred.reject(err);
-                        }
-                        else {
-                            removeHotel(resId);
-                            deferred.resolve(userFavObj);
-                        }
-                    });
-                }
-            });
-        return deferred.promise;
-    }
-
-
-    function storeHotel(hotel){
-        var deferred = q.defer();
-        console.log("Store hotel");
-        console.log(hotel);
-        RestaurantModel.findOne({resId: hotel.id},
-            function (err,found){
-                if(err){
-                    deferred.reject(err);
-                }
-                else{
-                    console.log("found hotel");
-                    console.log(found);
-
-                    if(found == null){
-
-                        RestaurantModel.create({
-                            resId: hotel.id,
-                            name : hotel.name,
-                            cuisines : hotel.cuisines,
-                            currency : hotel.currency,
-                            image : hotel.image,
-                            location : hotel.location.address,
-                            rating : hotel.rating.aggregate_rating
-
-                        },function(err,hotel){
-                            if(err){
-                                console.log("hotel save error");
-                                deferred.reject(err);
-                            }else{
-                                console.log("hotel saved");
-                                console.log(hotel);
-                                deferred.resolve(hotel);
-                            }
-                        });
-
-                    }
-                    else{
-                        deferred.resolve(hotel);
-                    }
-
-                }
-
-            });
-
-
-        return deferred.promise;
-    }
-
-    function removeHotel(resId){
-        var deferred = q.defer();
-        console.log(resId);
-        RestaurantModel.findOneAndRemove({ resId : resId },
-            function(err,hotel){
-                if(err){
-                    console.log("hotel remove error");
-                    deferred.reject(err);
-                }else{
-                    console.log("hotel remove");
-                    console.log(hotel);
-                    deferred.resolve(hotel);
-                }
-            });
-
-        return deferred.promise;
-    }
-
 
     function createPlaylist(playlistName, user) {
 
@@ -475,17 +238,7 @@ module.exports = function(db,mongoose,FollowModel) {
         UserModel.findById({_id:userId}, function(err,userFound){
             if(err){
                 deferred.reject(err);
-            }
-            else{
-                //username: String,
-                //    password: String,
-                //    firstName: String,
-                //    lastName: String,
-                //    email: String,
-                //    phones: String,
-                //    review: [ReviewSchema],
-                //    playlists:[Playlist],
-                //    friends : [String]
+            } else {
                 userFound.username = user.username;
                 userFound.firstName = user.firstName;
                 userFound.lastName = user.lastName;

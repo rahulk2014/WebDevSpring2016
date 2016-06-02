@@ -8,7 +8,7 @@
 
     app.controller("MainController", MainController);
 
-    <!-- Set the location variable to scope-->
+
     function MainController() {
         console.log("In main Controller");
 
