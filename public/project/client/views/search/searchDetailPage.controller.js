@@ -14,6 +14,7 @@
             var vm = this;
             vm.searchSong = searchSong;
             vm.addToPlaylist = addToPlaylist;
+
             vm.searchDetailResult = null;
             vm.user = UserService.getUser();
             console.log("HEY " + vm.user.playlists[0].playlistName);
@@ -30,10 +31,6 @@
             }
 
 
-            //songid : String,
-            //    songname: String,
-            //    artistname : String,
-            //    previewUrl : String
             function addToPlaylist(playlistId,searchDetailResult) {
                 //console.log("YO " + playlistName);
                 console.log("SEARCH DETAIL " + playlistId);
@@ -44,14 +41,12 @@
                     artistname : searchDetailResult.artistname,
                     previewURL : searchDetailResult.previewURL
                 }
-                UserService.addToPlaylist(vm.user.id, newSong, playlistId)
+                UserService.addToPlaylist(vm.user._id, newSong, playlistId)
                     .then(function(user){
                         console.log("Song added succesfully");
                     }, function(err){
                         console.log("Unable to add song.");
                     })
-
-                //UserService.addToPlaylist(playlistName)
 
             }
 

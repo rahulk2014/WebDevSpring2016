@@ -12,7 +12,7 @@ module.exports = function (app, userModel){
     app.put("/api/project/playlist/:playlistName", createPlaylist);
     app.get("/api/project/playlist/:userId", getPlaylists);
     app.delete("/api/project/playlist/:playlistId/user/:userId", deleteplaylist);
-    app.put("/api/project/song/user/:userId/playlist/:playlistId",addtoPlaylist);
+    app.put("/api/project/song/user/:userId/playlist/:playlistId",addToPlaylist);
 
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
@@ -201,7 +201,7 @@ module.exports = function (app, userModel){
                 });
     }
 
-    function addtoPlaylist(req,res) {
+    function addToPlaylist(req,res) {
         var newSong = req.body;
         userModel.addToPlaylist(req.params.userId,req.params.playlistId,newSong)
             .then(function(user){

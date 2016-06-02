@@ -30,7 +30,7 @@
             createPlaylist:createPlaylist,
             getplaylist:getplaylist,
             deleteplaylist : deleteplaylist,
-            addtoPlaylist : addtoPlaylist,
+            addToPlaylist : addToPlaylist,
 
             //follow
             addFriend: addFriend,
@@ -45,7 +45,7 @@
 
         return userService;
 
-        function addtoPlaylist(userId, newSong, playlistId) {
+        function addToPlaylist(userId, newSong, playlistId) {
             return $http.put("/api/project/song/user/" + userId +"/playlist/" + playlistId,newSong);
         }
 

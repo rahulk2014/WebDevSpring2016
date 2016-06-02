@@ -27,7 +27,7 @@ module.exports = function(db,mongoose,FollowModel) {
         createPlaylist:createPlaylist,
         getPlaylists : getPlaylists,
         deleteplaylist : deleteplaylist,
-        addtoPlaylist : addtoPlaylist,
+        addToPlaylist : addToPlaylist,
 
         //follow
         addFriend:addFriend,
@@ -380,18 +380,25 @@ module.exports = function(db,mongoose,FollowModel) {
         return deferred.promise;
     }
 
-    function addtoPlaylist(userId,playlistId,newSong) {
+    function addToPlaylist(userId,playlistId,newSong) {
         var deferred = q.defer();
-        console.log("Inside addtoPlaylists");
+        console.log("Inside addtoPlaylist: userModel");
+        console.log("NEW SONG : " + newSong);
+        console.log(userId);
         UserModel.findById(userId).then(
             function(user) {
                 var playlistToUpdate = user.playlists.id(playlistId);
+                console.log(playlistToUpdate);
                 playlistToUpdate.playlistName = playlistToUpdate.playlistName;
                 playlistToUpdate.songs.push(newSong);
-                playlistToUpdate.save(function(err, user){
+                console.log(playlistToUpdate);
+                user.save(function(err, user){
                     if(err) {
+                        console.log("HERE LIES THE ERROR");
                         deferred.reject(err);
                     } else {
+                        console.log("HERE IAM IN ADD TO PLAYLIST USER MODEL");
+                        console.log(user);
                         deferred.resolve(user);
                     }
                 });
