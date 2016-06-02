@@ -47,19 +47,13 @@ h2#storeAndListenImage{
     color : #f0ad4e;
 }
 
-h3#projectHeading {
-    /*position: absolute;*/
-    /*top : 10%;*/
-    /*bottom : 0;*/
-    /*left: 0;*/
-    /*right : 0;*/
+h2#projectHeading {
     justify-content: center;
     color : lightyellow;
     text-align: center;
     font-family: Helvetica;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    font-size: 7.5rem;
 }
 
 h4#projectSubHeading {
