@@ -12,6 +12,7 @@ module.exports = function (app, userModel){
     app.put("/api/project/playlist/:playlistName", createPlaylist);
     app.get("/api/project/playlist/:userId", getPlaylists);
     app.delete("/api/project/playlist/:playlistId/user/:userId", deleteplaylist);
+    app.put("/api/project/song/user/:userId/playlist/:playlistId",addtoPlaylist);
 
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
@@ -198,6 +199,17 @@ module.exports = function (app, userModel){
                 function ( err ) {
                     res.status(400).send(err);
                 });
+    }
+
+    function addtoPlaylist(req,res) {
+        var newSong = req.body;
+        userModel.addToPlaylist(req.params.userId,req.params.playlistId,newSong)
+            .then(function(user){
+                console.log("Succesfully added song! ");
+                res.json(user);
+            }, function (err){
+                res.status(400).send(err);
+            })
     }
 
     function deleteplaylist(req,res) {

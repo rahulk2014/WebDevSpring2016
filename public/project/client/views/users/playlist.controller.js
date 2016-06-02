@@ -23,7 +23,7 @@
                     vm.message = "Playlist Deleted";
                     UserService.getplaylist(vm.user._id)
                         .then(function(users){
-                            vm.playlists = users.playlists;
+                            vm.playlists = users.data.playlists;
                         }, function(err){
                             console.log("unable to load playlists");
                         });

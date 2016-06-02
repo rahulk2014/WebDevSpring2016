@@ -13,6 +13,7 @@
         var vm = this;
         vm.logout = logout;
         vm.createPlaylist = createPlaylist;
+        vm.close = close;
         vm.successMessage = null;
 
         function init() {
@@ -22,11 +23,17 @@
         }
         init();
 
+        function close() {
+            vm.successMessage = null;
+        }
+
         function createPlaylist(playlistName) {
+
             console.log("Inside createplaylist controller");
             UserService
                 .createPlaylist(playlistName,$rootScope.currentUser)
                 .then(function(response) {
+                    vm.playlistName = null;
                     vm.successMessage="Playlist Created";
                     console.log("In success createplaylist");
                 }, function(err) {

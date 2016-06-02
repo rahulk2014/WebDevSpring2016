@@ -34,6 +34,8 @@ module.exports = function(app) {
         console.log(spotify_uri);
         var artistName = artists['name'];
         var artistURI = artists['uri'];
+        var songId = songDetailResult['id'];
+        console.log("SONG ID IN SEARCH DETAIL RESULT = " + songId);
 
         songDetailResult = {
             imageURL : imageURL,
@@ -43,7 +45,8 @@ module.exports = function(app) {
             previewURL : previewURL,
             popularity : popularity,
             trackName : trackName,
-            duration_ms : duration_ms
+            duration_ms : duration_ms,
+            songId : songId
         };
         console.log(spotify_uri);
         return songDetailResult;

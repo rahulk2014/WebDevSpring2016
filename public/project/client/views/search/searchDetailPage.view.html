@@ -2,6 +2,8 @@
     <video id="bcgVid" autoplay loop class="fillWidth">
         <source src="../../../../project/resources/Cheer-Up/MP4/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
         <source src="../../../../project/resources/Cheer-Up/WEBM/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        <!--<source src="../../../../project/resources/Strum-Away/MP4/Strum-Away.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.-->
+        <!--<source src="../../../../project/resources/Strum-Away/WEBM/Strum-Away.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.-->
     </video>
     <div class="row">
         <!--spotify:track:5Xkfw6B1Cs4jnpKOh0GULs-->
@@ -37,6 +39,45 @@
                     <h4>TRACK DURATION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      : {{model.searchDetailResult.duration_ms}} sec</h4>
                 </div>
                 <hr>
+                <a ng-show="currentUser" data-toggle="modal" data-target="#playlistModal">
+                    <h2><span class="glyphicon glyphicon-plus addtoplaylist"></span></h2>
+                </a>
+                <h3 ng-show="currentUser">Add to Playlist<h3>
+        </div>
+    </div>
+</div>
+
+<div id="playlistModal" class="modal fade" role="dialog" ng-controller = "SearchDetailController as model">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select a playlist</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Playlists </label><br>
+                        <div ng-repeat = "playlist in model.user.playlists">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="radioName" value="{{playlist._id}}" ng-model="model.hello" id="radio" />
+                                    {{playlist.playlistName}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" ng-click="model.addToPlaylist(model.hello,model.searchDetailResult)" class="btn btn-default">Add to playlist</button>
+                </form>
+                <br>
+                <div ng-show="model.successMessage" class="alert alert-success" role="alert">{{model.successMessage}}</div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="model.close()" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>

@@ -64,7 +64,10 @@
                 .when("/searchDetail/:songId", {
                     templateUrl: "views/search/searchDetailPage.view.html",
                     controller: "SearchDetailController",
-                    controllerAs : "model"
+                    controllerAs : "model",
+                    resolve: {
+                        checkCurrentUser: checkCurrentUser
+                    }
                 })
                 .when("/search/:query", {
                     templateUrl: "views/search/searchPage.view.html",

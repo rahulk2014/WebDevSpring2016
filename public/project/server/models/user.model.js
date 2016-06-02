@@ -27,6 +27,7 @@ module.exports = function(db,mongoose,FollowModel) {
         createPlaylist:createPlaylist,
         getPlaylists : getPlaylists,
         deleteplaylist : deleteplaylist,
+        addtoPlaylist : addtoPlaylist,
 
         //follow
         addFriend:addFriend,
@@ -367,15 +368,34 @@ module.exports = function(db,mongoose,FollowModel) {
     function getPlaylists(userId) {
         var deferred = q.defer();
         console.log("Inside getplaylists");
-        UserModel.findById({_id:userId}, function(err,playlistsFound) {
+        UserModel.findById({_id:userId}, function(err,userFound) {
             if (err) {
                 deferred.reject(err);
             }
             else {
-                console.log("Success")
-                deferred.resolve(playlistsFound);
+                console.log("Success");
+                deferred.resolve(userFound);
             }
         });
+        return deferred.promise;
+    }
+
+    function addtoPlaylist(userId,playlistId,newSong) {
+        var deferred = q.defer();
+        console.log("Inside addtoPlaylists");
+        UserModel.findById(userId).then(
+            function(user) {
+                var playlistToUpdate = user.playlists.id(playlistId);
+                playlistToUpdate.playlistName = playlistToUpdate.playlistName;
+                playlistToUpdate.songs.push(newSong);
+                playlistToUpdate.save(function(err, user){
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(user);
+                    }
+                });
+            });
         return deferred.promise;
     }
 
