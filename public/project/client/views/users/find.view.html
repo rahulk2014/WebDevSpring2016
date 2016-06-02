@@ -31,10 +31,9 @@
         &nbsp;
         <ul class="thumbnails list-inline">
             <li ng-repeat="friend in model.friends">
-                <!--ng-repeat="friend in model.Friends">-->
                 <div class="thumbnail ">
                     <img src="//placehold.it/120x120">
-                    <a href = "#/api/profile/{{user.username}}/profile">
+                    <a href = "#/api/profile/{{friend.followerName}}/profile">
                         <h4>
                             <p align="center">{{friend.followerName}} </p>
                         </h4>

@@ -60,7 +60,7 @@
             .then(
                 function(userFriend){
                     vm.message= "Added as friend";
-                        var friends = [];
+                    var friends = [];
                     friends = $rootScope.currentUser.friends;
                     friends.push(userFriend.data.followerId);
 
@@ -99,7 +99,7 @@
                         });
 
                 },function(err){
-
+                    console.log("Unable to find friends");
                 }
             )
         }

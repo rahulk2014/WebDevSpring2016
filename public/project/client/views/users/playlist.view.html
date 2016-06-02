@@ -18,23 +18,39 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="row" ng-repeat="result in model.playlists">
-                    <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6">
-                        <h2>{{result.playlistName}}
-                            <a ng-click="model.deleteplaylist(result._id)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </h2>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xs-6 ">
-                        <div class="row" ng-repeat="song in result.songs" >
-                            <div class="col-md-12">
-                                <a href="#/searchDetail/{{song.songid}}">{{song.songname}}</a>
-                                <a ng-click="model.deleteSong(result._id,song._id)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
+                    <div class="col-md-12 col-xl-12 col-lg-12 col-xs-12">
+                        <!--Add card here -->
+                        <div class="w3-card-4">
+                            <header class="w3-container w3-blue">
+                                <h2>{{result.playlistName}}
+                                    <a ng-click="model.deleteplaylist(result._id)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </h2>
+                            </header>
+                            <div class="w3-container">
+                                <div class="row" ng-repeat="song in result.songs" >
+                                    <div class="col-md-12">
+                                        <a href="#/searchDetail/{{song.songid}}">{{song.songname}}</a>
+                                        <a ng-click="model.deleteSong(result._id,song._id)">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
                             </div>
                         </div>
                     </div>
+                    <!--<div class="col-md-6 col-lg-6 col-xs-6 ">-->
+                        <!--<div class="row" ng-repeat="song in result.songs" >-->
+                            <!--<div class="col-md-12">-->
+                                <!--<a href="#/searchDetail/{{song.songid}}">{{song.songname}}</a>-->
+                                <!--<a ng-click="model.deleteSong(result._id,song._id)">-->
+                                    <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>

@@ -63,7 +63,7 @@
         function createPlaylist(playlistName, user) {
             return $http.put("/api/project/playlist/" + playlistName ,user);
         }
-
+        // Manually send JSON objects in REST calls.
         function addFriend(userId,userName,friend){
             return $http.post("/api/project/"+userId+"/follow/"+userName,friend,{headers: {'Content-Type': 'application/json'} });
         }
