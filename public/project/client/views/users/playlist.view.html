@@ -19,7 +19,11 @@
             <div class="card">
                 <div class="row" ng-repeat="result in model.playlists">
                     <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6">
-                        <h2>{{result.playlistName}}</h2>
+                        <h2>{{result.playlistName}}
+                            <a ng-click="model.deleteplaylist(result._id)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </h2>
                     </div>
                     <div class="col-md-6 col-xl-6 col-lg-6 col-xs-6 center-block" style="float : left;">
                         <div class="row" ng-repeat="song in result.songs" >
@@ -28,7 +32,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
         </div>
     </div>
 

@@ -11,6 +11,7 @@ module.exports = function (app, userModel){
 
     app.put("/api/project/playlist/:playlistName", createPlaylist);
     app.get("/api/project/playlist/:userId", getPlaylists);
+    app.delete("/api/project/playlist/:playlistId/user/:userId", deleteplaylist);
 
     app.post("/api/project/user",createUser);
     app.get("/api/project/user",findUser);
@@ -193,6 +194,17 @@ module.exports = function (app, userModel){
                     console.log("Inside user web service");
                     console.log(JSON.stringify(doc));
                     res.json(doc);
+                },
+                function ( err ) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function deleteplaylist(req,res) {
+        userModel.deleteplaylist(req.params.playlistId,req.params.userId)
+            .then(
+                function (users) {
+                    res.json(users);
                 },
                 function ( err ) {
                     res.status(400).send(err);

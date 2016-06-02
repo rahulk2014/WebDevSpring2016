@@ -29,6 +29,7 @@
             //playlist
             createPlaylist:createPlaylist,
             getplaylist:getplaylist,
+            deleteplaylist : deleteplaylist,
 
             //follow
             addFriend: addFriend,
@@ -42,6 +43,10 @@
         };
 
         return userService;
+
+        function deleteplaylist(playlistId, userId) {
+            return $http.delete("/api/project/playlist/"+playlistId+"/user/"+userId);
+        }
 
         function getplaylist(userId){
             return $http.get("/api/project/playlist/" + userId);

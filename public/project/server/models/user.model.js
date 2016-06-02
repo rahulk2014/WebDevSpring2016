@@ -25,6 +25,8 @@ module.exports = function(db,mongoose,FollowModel) {
 
         //playlist
         createPlaylist:createPlaylist,
+        getPlaylists : getPlaylists,
+        deleteplaylist : deleteplaylist,
 
         //follow
         addFriend:addFriend,
@@ -364,15 +366,38 @@ module.exports = function(db,mongoose,FollowModel) {
 
     function getPlaylists(userId) {
         var deferred = q.defer();
-        console.log("Inside User Model");
+        console.log("Inside getplaylists");
         UserModel.findById({_id:userId}, function(err,playlistsFound) {
             if (err) {
                 deferred.reject(err);
             }
             else {
+                console.log("Success")
                 deferred.resolve(playlistsFound);
             }
         });
+        return deferred.promise;
+    }
+
+    function deleteplaylist(playlistId, userId) {
+        var deferred = q.defer();
+        console.log("In deleteplaylist");
+        console.log(playlistId);
+        UserModel.findById(userId).then(
+            function(user) {
+                user.playlists.id(playlistId).remove();
+                user.save(function(err, user){
+                    if(err) {
+                        console.log("Error");
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(user.playlists);
+                        console.log("Success in deleteplaylist");
+                    }
+                });
+            });
+
+        return deferred.promise;
     }
 
     function createUser(user){
