@@ -6,7 +6,7 @@
         .module("SongsForYouApp")
         .controller("FriendProfileController", FriendProfileController);
 
-    function FriendProfileController ( $routeParams, UserService ) {
+    function FriendProfileController ($routeParams, UserService) {
 
         var vm = this;
         vm.profileUserName = $routeParams.username;

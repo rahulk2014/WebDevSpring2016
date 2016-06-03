@@ -1,10 +1,13 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <video id="bcgVid" autoplay loop class="fillWidth">
+        <source src="../../../../project/resources/Sky-High/MP4/Sky-High.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        <source src="../../../../project/resources/Sky-High/WEBM/Sky-High.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+    </video>
     <ul class="nav nav-tabs">
         <li role="presentation"  class="active"><a  href ="#/api/profile/{{model.profileUserName}}/profile">Profile</a></li>
-        <li role="presentation"><a href="#/api/profile/{{model.profileUserName}}/playlists ">PlayLists</a></li>
+        <li role="presentation"><a href="#/api/profile/{{model.profileUserName}}/playlists">PlayLists</a></li>
     </ul>
     <h1 class="page-header"></h1>
-
     <form  id ="profile" class="form-horizontal" name="profileForm">
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">Username:</label>
@@ -34,14 +37,6 @@
                 </span>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="phones" class="col-sm-2 control-label">Phone Numbers:</label>
-            <div class="col-sm-10">
-                <input type="text" ng-model="model.user.phones" class="form-control" id="phones" placeholder="10 digit phone number" readonly>
-            </div>
-        </div>
-
     </form>
 
 

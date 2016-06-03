@@ -61,6 +61,15 @@
                         checkLoggedIn: checkLoggedin
                     }
                 })
+                .when("/api/profile/:profileUserName/playlists", {
+                    templateUrl: "views/users/friend.playlist.view.html",
+                    controller: "FriendPlaylistController",
+                    controllerAs: "model",
+                    resolve: {
+                        checkLoggedIn: checkLoggedin
+                    }
+                })
+                //#/api/profile/{{model.profileUserName}}/playlists "
                 .when("/searchDetail/:songId", {
                     templateUrl: "views/search/searchDetailPage.view.html",
                     controller: "SearchDetailController",

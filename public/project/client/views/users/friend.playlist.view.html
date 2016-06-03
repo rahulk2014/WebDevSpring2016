@@ -1,0 +1,40 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <video id="bcgVid" autoplay loop class="fillWidth">
+        <source src="../../../../project/resources/Sky-High/MP4/Sky-High.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        <source src="../../../../project/resources/Sky-High/WEBM/Sky-High.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+    </video>
+    <ul class="nav nav-tabs">
+        <li role="presentation" ><a href ="#/api/profile/{{model.profileUserName}}/profile">Profile</a></li>
+        <li role="presentation" class="active"><a href="#/api/profile/{{model.profileUserName}}/playlists">PlayLists</a></li>
+    </ul>
+    <h1 class="page-header"></h1>
+    <div ng-show="model.user.playlists.length <= 0" class="alert alert-success" role="alert">"<b>{{model.profileUserName}}</b>" does not have any playlists.</div>
+
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="row" ng-repeat="result in model.user.playlists">
+                    <div class="col-md-12 col-xl-12 col-lg-12 col-xs-12">
+                        <!--Add card here -->
+                        <div class="w3-card-4">
+                            <header class="w3-container w3-blue">
+                                <h2>{{result.playlistName}}
+                                </h2>
+                            </header>
+                            <div class="w3-container">
+                                <div class="row" ng-repeat="song in result.songs" >
+                                    <div class="col-md-12">
+                                        <a href="#/searchDetail/{{song.songid}}">{{song.songname}}</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
