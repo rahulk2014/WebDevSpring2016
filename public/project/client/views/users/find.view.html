@@ -5,7 +5,7 @@
     </video>
     <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
     <div>
-        <h2>Ola {{currentUser.username}}, find your friends here !  </h2>
+        <h2>Ola {{currentUser.username}}, people whom you can connect with !  </h2>
         &nbsp;
         <ul class="thumbnails list-inline">
             <li ng-repeat="user in model.allUsers">
@@ -26,7 +26,7 @@
         &nbsp;
     </div>
     <div >
-        <h2>Your friends</h2>
+        <h2>My friends</h2>
         &nbsp;
         <ul class="thumbnails list-inline">
             <li ng-repeat="friend in model.friends">
@@ -48,7 +48,7 @@
         &nbsp;
     </div>
     <div>
-        <h2>People who added you as friend </h2>
+        <h2>Followers </h2>
         &nbsp;
         <ul class="thumbnails list-inline">
             <li ng-repeat="follower in model.followers">
