@@ -60,8 +60,7 @@
             .then(
                 function(userFriend){
                     vm.message= "Added as friend";
-                    var friends = [];
-                    friends = $rootScope.currentUser.friends;
+                    var friends = $rootScope.currentUser.friends;
                     friends.push(userFriend.data.followerId);
 
                     var updatedUser = {
@@ -113,8 +112,7 @@
                     .then(
                         function(remvedList){
                             vm.message= "Removed as friend";
-                            var friends = [];
-                            friends = $rootScope.currentUser.friends;
+                            var friends = $rootScope.currentUser.friends;
                             friends.splice(friends.indexOf(userFriend.data._id),1);
 
                             var updatedUser = {
@@ -153,12 +151,5 @@
 
                         },function(err){
 
-                        }
-                    )
-
-            });
-
-        }
-
-    }
-})();
+                        })});
+        }}})();
